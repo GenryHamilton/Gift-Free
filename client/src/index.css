@@ -1,3 +1,135 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #17212b;
+  color: #ffffff;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Telegram theme variables */
+:root {
+  --telegram-bg: #17212b;
+  --telegram-secondary: #242f3d;
+  --telegram-accent: #2481cc;
+  --telegram-text: #ffffff;
+  --telegram-hint: #708499;
+  --gift-gold: #ffd700;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--telegram-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--telegram-accent);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1e73aa;
+}
+
+/* Utility classes */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.rounded-full {
+  border-radius: 9999px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
+.border-telegram-accent {
+  border-color: var(--telegram-accent);
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.text-telegram-hint {
+  color: var(--telegram-hint);
+}
+
+.bg-telegram-bg {
+  background-color: var(--telegram-bg);
+}
+
+.font-sf-pro {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--telegram-bg);
+}
+
+.spinner {
+  border: 2px solid var(--telegram-secondary);
+  border-top: 2px solid var(--telegram-accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+=======
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
