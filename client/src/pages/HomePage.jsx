@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, Gift, Sparkles, Heart, Star } from 'lucide-react';
+import { Search, Filter, Gift, Sparkles, Heart, Star, Hexagon } from 'lucide-react';
 import { useTelegram } from '../hooks/useTelegram';
 import { useGift } from '../contexts/GiftContext';
 import { giftService } from '../services/api';
 import GiftCard from '../components/GiftCard';
 import BalanceCard from '../components/BalanceCard';
+import GeometricIcon from '../components/GeometricIcon';
 
 const HomePage = () => {
   const { user, hapticFeedback, showAlert } = useTelegram();
@@ -16,7 +17,7 @@ const HomePage = () => {
   const [sortBy, setSortBy] = useState('popular');
 
   const categories = [
-    { id: 'all', name: 'Все', icon: Gift },
+    { id: 'all', name: 'Все', icon: Hexagon },
     { id: 'premium', name: 'Премиум', icon: Star },
     { id: 'limited', name: 'Лимитед', icon: Sparkles },
     { id: 'romantic', name: 'Романтика', icon: Heart },
@@ -143,76 +144,103 @@ const HomePage = () => {
       totalPurchases: 67,
       image: null
     },
+    {
+      id: 5,
+      name: 'Лунный камень',
+      description: 'Мистический камень с энергией луны',
+      price: 125,
+      rarity: 'epic',
+      category: 'premium',
+      rating: 4.6,
+      totalPurchases: 54,
+      image: null
+    },
+    {
+      id: 6,
+      name: 'Феникс',
+      description: 'Легендарная птица возрождения',
+      price: 300,
+      rarity: 'mythic',
+      category: 'limited',
+      rating: 4.9,
+      totalPurchases: 12,
+      image: null
+    },
   ];
 
   const displayGifts = sortedGifts.length > 0 ? sortedGifts : demoGifts;
 
   return (
-    <div className="min-h-screen bg-telegram-bg">
+    <div className="min-h-screen bg-case-darker relative overflow-hidden">
+      {/* Geometric background */}
+      <div className="geometric-bg fixed inset-0 pointer-events-none" />
+      
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-telegram-bg/95 backdrop-blur-sm border-b border-telegram-accent/20">
-        <div className="px-4 py-3">
-          <div className="flex items-center justify-between mb-4">
+      <div className="sticky top-0 z-40 glass-card border-0 border-b border-case-primary/20">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-2xl font-bold text-telegram-text">
-                Подарки
+              <h1 className="text-3xl font-bold text-case mb-1">
+                CASE Gifts
               </h1>
               <p className="text-telegram-hint text-sm">
-                Привет, {user?.first_name || 'Пользователь'}! 👋
+                Привет, {user?.first_name || 'Пользователь'}! ✨
               </p>
             </div>
-            <motion.div
-              animate={{ 
-                rotate: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ 
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="text-2xl"
-            >
-              🎁
-            </motion.div>
+            <div className="relative">
+              <GeometricIcon size="lg" variant="hexagon" animate={true} />
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-case-secondary rounded-full animate-pulse" />
+            </div>
           </div>
 
           <BalanceCard 
             balance={balance}
             onTopUp={handleTopUp}
-            className="mb-4"
+            className="mb-6"
           />
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="px-4 py-4 space-y-4">
+      <div className="px-6 py-6 space-y-6">
         {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-telegram-hint w-5 h-5" />
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative"
+        >
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-telegram-hint w-5 h-5" />
           <input
             type="text"
             placeholder="Поиск подарков..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-telegram-secondary rounded-xl text-telegram-text placeholder-telegram-hint border border-telegram-accent/20 focus:border-telegram-accent outline-none transition-colors"
+            className="w-full pl-12 pr-4 py-4 glass-card rounded-2xl text-telegram-text placeholder-telegram-hint focus:border-case-primary outline-none transition-all duration-300"
           />
-        </div>
+        </motion.div>
 
         {/* Categories */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {categories.map(category => {
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide"
+        >
+          {categories.map((category, index) => {
             const Icon = category.icon;
             return (
               <motion.button
                 key={category.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                className={`flex items-center gap-3 px-5 py-3 rounded-2xl whitespace-nowrap transition-all duration-300 ${
                   selectedCategory === category.id
-                    ? 'bg-telegram-accent text-white'
-                    : 'bg-telegram-secondary text-telegram-text hover:bg-telegram-accent/20'
+                    ? 'bg-case-gradient text-white shadow-lg'
+                    : 'glass-card text-telegram-text hover:bg-case-primary/20'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -220,17 +248,22 @@ const HomePage = () => {
               </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Filters */}
-        <div className="flex gap-2">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex gap-3"
+        >
           <select
             value={selectedRarity}
             onChange={(e) => setSelectedRarity(e.target.value)}
-            className="px-3 py-2 bg-telegram-secondary rounded-lg text-telegram-text border border-telegram-accent/20 focus:border-telegram-accent outline-none"
+            className="px-4 py-3 glass-card rounded-2xl text-telegram-text focus:border-case-primary outline-none flex-1 transition-all duration-300"
           >
             {rarities.map(rarity => (
-              <option key={rarity.id} value={rarity.id}>
+              <option key={rarity.id} value={rarity.id} className="bg-case-dark">
                 {rarity.name}
               </option>
             ))}
@@ -239,27 +272,33 @@ const HomePage = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-2 bg-telegram-secondary rounded-lg text-telegram-text border border-telegram-accent/20 focus:border-telegram-accent outline-none"
+            className="px-4 py-3 glass-card rounded-2xl text-telegram-text focus:border-case-primary outline-none flex-1 transition-all duration-300"
           >
             {sortOptions.map(option => (
-              <option key={option.id} value={option.id}>
+              <option key={option.id} value={option.id} className="bg-case-dark">
                 {option.name}
               </option>
             ))}
           </select>
-        </div>
+        </motion.div>
       </div>
 
       {/* Gifts Grid */}
-      <div className="px-4 pb-20">
+      <div className="px-6 pb-24">
         {loading ? (
           <div className="grid grid-cols-2 gap-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-telegram-secondary rounded-2xl p-4 animate-pulse">
-                <div className="h-32 bg-telegram-accent/20 rounded-lg mb-4" />
-                <div className="h-4 bg-telegram-accent/20 rounded mb-2" />
-                <div className="h-3 bg-telegram-accent/20 rounded w-3/4" />
-              </div>
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-card rounded-3xl p-4 animate-pulse"
+              >
+                <div className="h-32 bg-case-primary/20 rounded-2xl mb-4" />
+                <div className="h-4 bg-case-primary/20 rounded-lg mb-2" />
+                <div className="h-3 bg-case-primary/20 rounded-lg w-3/4" />
+              </motion.div>
             ))}
           </div>
         ) : (
@@ -271,9 +310,14 @@ const HomePage = () => {
             {displayGifts.map((gift, index) => (
               <motion.div
                 key={gift.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ y: -5 }}
               >
                 <GiftCard
                   gift={gift}
