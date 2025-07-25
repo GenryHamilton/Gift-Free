@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, User, Star, Heart, Gift } from 'lucide-react';
 import { useTelegram } from '../hooks/useTelegram';
+import TonPrice from './TonPrice';
 
 const GiftModal = ({ isOpen, onClose, gift, onSend }) => {
   const { hapticFeedback, user, showAlert } = useTelegram();
@@ -102,16 +103,15 @@ const GiftModal = ({ isOpen, onClose, gift, onSend }) => {
                 variants={giftVariants}
                 initial="initial"
                 animate="animate"
-                className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-2xl flex items-center justify-center"
+                className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-2xl flex items-center justify-center text-4xl"
               >
-                <Gift className="w-12 h-12 text-gift-gold" />
+                {gift?.emoji || '🎁'}
               </motion.div>
               <h4 className="text-lg font-semibold text-telegram-text mb-2">
                 {gift?.name}
               </h4>
-              <div className="flex items-center justify-center gap-2 text-telegram-accent">
-                <Star className="w-4 h-4 text-gift-gold" />
-                <span className="font-bold">{gift?.price}</span>
+              <div className="flex justify-center">
+                <TonPrice price={gift?.price || 0} size="md" />
               </div>
             </div>
 

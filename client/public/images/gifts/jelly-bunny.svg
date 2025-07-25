@@ -1,0 +1,57 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bunnyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE0F1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F8BBD9;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="jellyShine" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFF;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#FFF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Bunny body -->
+  <ellipse cx="64" cy="75" rx="30" ry="35" fill="url(#bunnyGradient)"/>
+  <ellipse cx="64" cy="75" rx="30" ry="35" fill="url(#jellyShine)"/>
+  
+  <!-- Bunny head -->
+  <circle cx="64" cy="45" r="25" fill="url(#bunnyGradient)"/>
+  <circle cx="64" cy="45" r="25" fill="url(#jellyShine)"/>
+  
+  <!-- Ears -->
+  <ellipse cx="55" cy="25" rx="8" ry="20" fill="url(#bunnyGradient)" transform="rotate(-20 55 25)"/>
+  <ellipse cx="73" cy="25" rx="8" ry="20" fill="url(#bunnyGradient)" transform="rotate(20 73 25)"/>
+  <ellipse cx="55" cy="25" rx="8" ry="20" fill="url(#jellyShine)" transform="rotate(-20 55 25)"/>
+  <ellipse cx="73" cy="25" rx="8" ry="20" fill="url(#jellyShine)" transform="rotate(20 73 25)"/>
+  
+  <!-- Inner ears -->
+  <ellipse cx="55" cy="28" rx="4" ry="12" fill="#F48FB1" transform="rotate(-20 55 28)"/>
+  <ellipse cx="73" cy="28" rx="4" ry="12" fill="#F48FB1" transform="rotate(20 73 28)"/>
+  
+  <!-- Eyes -->
+  <circle cx="58" cy="40" r="4" fill="#333"/>
+  <circle cx="70" cy="40" r="4" fill="#333"/>
+  <circle cx="59" cy="38" r="1.5" fill="#FFF"/>
+  <circle cx="71" cy="38" r="1.5" fill="#FFF"/>
+  
+  <!-- Nose -->
+  <ellipse cx="64" cy="48" rx="2" ry="1.5" fill="#E91E63"/>
+  
+  <!-- Mouth -->
+  <path d="M64 50 Q60 53, 58 50" stroke="#E91E63" stroke-width="1.5" fill="none"/>
+  <path d="M64 50 Q68 53, 70 50" stroke="#E91E63" stroke-width="1.5" fill="none"/>
+  
+  <!-- Whiskers -->
+  <line x1="45" y1="45" x2="52" y2="47" stroke="#666" stroke-width="1"/>
+  <line x1="45" y1="50" x2="52" y2="50" stroke="#666" stroke-width="1"/>
+  <line x1="76" y1="47" x2="83" y2="45" stroke="#666" stroke-width="1"/>
+  <line x1="76" y1="50" x2="83" y2="50" stroke="#666" stroke-width="1"/>
+  
+  <!-- Sparkles -->
+  <g fill="#FF69B4" opacity="0.7">
+    <circle cx="35" cy="30" r="2"/>
+    <circle cx="95" cy="45" r="1.5"/>
+    <circle cx="25" cy="70" r="1"/>
+    <circle cx="100" cy="80" r="2"/>
+  </g>
+</svg>

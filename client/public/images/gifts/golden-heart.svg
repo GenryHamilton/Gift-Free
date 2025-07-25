@@ -1,0 +1,82 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8F00;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="goldShine" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FFF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#FFF;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Heart shape -->
+  <path d="M64 25 C52 10, 28 10, 28 35 C28 55, 64 85, 64 85 C64 85, 100 55, 100 35 C100 10, 76 10, 64 25 Z" 
+        fill="url(#goldGradient)" 
+        stroke="#E65100" 
+        stroke-width="2"/>
+  
+  <!-- Golden shine -->
+  <path d="M64 25 C52 10, 28 10, 28 35 C28 55, 64 85, 64 85 C64 85, 100 55, 100 35 C100 10, 76 10, 64 25 Z" 
+        fill="url(#goldShine)"/>
+  
+  <!-- Heart highlight -->
+  <ellipse cx="50" cy="35" rx="8" ry="12" fill="#FFF" opacity="0.4" transform="rotate(-20 50 35)"/>
+  
+  <!-- Decorative gems -->
+  <circle cx="64" cy="45" r="4" fill="#E91E63"/>
+  <circle cx="64" cy="45" r="2" fill="#FFF" opacity="0.6"/>
+  
+  <circle cx="50" cy="40" r="3" fill="#9C27B0"/>
+  <circle cx="50" cy="40" r="1.5" fill="#FFF" opacity="0.6"/>
+  
+  <circle cx="78" cy="40" r="3" fill="#2196F3"/>
+  <circle cx="78" cy="40" r="1.5" fill="#FFF" opacity="0.6"/>
+  
+  <!-- Sparkles around heart -->
+  <g fill="#FFD700" opacity="0.8">
+    <g transform="translate(25,30)">
+      <path d="M0,-6 L2,-2 L6,-2 L3,1 L4,5 L0,3 L-4,5 L-3,1 L-6,-2 L-2,-2 Z">
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="4s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    <g transform="translate(105,35)">
+      <path d="M0,-4 L1,-1 L4,-1 L2,1 L3,4 L0,2 L-3,4 L-2,1 L-4,-1 L-1,-1 Z">
+        <animateTransform attributeName="transform" type="rotate" values="360;0" dur="3s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    <g transform="translate(30,75)">
+      <path d="M0,-5 L1,-1 L5,-1 L2,1 L3,5 L0,3 L-3,5 L-2,1 L-5,-1 L-1,-1 Z">
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+    <g transform="translate(98,75)">
+      <path d="M0,-4 L1,-1 L4,-1 L2,1 L3,4 L0,2 L-3,4 L-2,1 L-4,-1 L-1,-1 Z">
+        <animateTransform attributeName="transform" type="rotate" values="360;0" dur="2.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+  
+  <!-- Golden rays -->
+  <g stroke="#FFD700" stroke-width="2" fill="none" opacity="0.6">
+    <line x1="64" y1="15" x2="64" y2="5">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="85" y1="25" x2="92" y2="18">
+      <animate attributeName="opacity" values="1;0.6;1" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="43" y1="25" x2="36" y2="18">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="2.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="105" y1="50" x2="115" y2="50">
+      <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="23" y1="50" x2="13" y2="50">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+    </line>
+  </g>
+  
+  <!-- Shadow -->
+  <ellipse cx="64" cy="110" rx="25" ry="8" fill="#000" opacity="0.2"/>
+</svg>
