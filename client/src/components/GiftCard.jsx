@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Gift, Star, Users, Sparkles } from 'lucide-react';
+import { Gift, Star, Users, Sparkles, Hexagon } from 'lucide-react';
 
 const GiftCard = ({ 
   gift, 
@@ -13,17 +13,17 @@ const GiftCard = ({
   const getRarityColor = (rarity) => {
     switch (rarity) {
       case 'common':
-        return 'from-gray-400 to-gray-600';
+        return 'from-slate-400 to-slate-600';
       case 'rare':
-        return 'from-blue-400 to-blue-600';
+        return 'from-case-secondary to-cyan-600';
       case 'epic':
-        return 'from-purple-400 to-purple-600';
+        return 'from-case-primary to-purple-600';
       case 'legendary':
-        return 'from-yellow-400 to-yellow-600';
+        return 'from-gift-gold to-amber-600';
       case 'mythic':
-        return 'from-pink-400 to-pink-600';
+        return 'from-pink-400 to-rose-600';
       default:
-        return 'from-gray-400 to-gray-600';
+        return 'from-slate-400 to-slate-600';
     }
   };
 
@@ -45,27 +45,47 @@ const GiftCard = ({
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, y: 20, scale: 0.8 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    },
     hover: { 
-      y: -8, 
+      y: -10, 
+      scale: 1.05,
       transition: { 
         type: "spring", 
-        stiffness: 300,
+        stiffness: 400,
         damping: 25
       }
     }
   };
 
   const glowVariants = {
-    initial: { opacity: 0.3 },
+    initial: { opacity: 0.2 },
     animate: { 
-      opacity: [0.3, 0.8, 0.3],
+      opacity: [0.2, 0.6, 0.2],
+      scale: [1, 1.02, 1],
       transition: { 
-        duration: 2,
+        duration: 3,
         repeat: Infinity,
         ease: "easeInOut"
       }
+    }
+  };
+
+  const iconVariants = {
+    initial: { rotate: 0, scale: 1 },
+    hover: { 
+      rotate: 360, 
+      scale: 1.1,
+      transition: { duration: 0.5 }
     }
   };
 
@@ -77,105 +97,152 @@ const GiftCard = ({
       whileHover="hover"
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className={`relative bg-gradient-to-br from-telegram-secondary to-telegram-bg rounded-2xl p-4 cursor-pointer overflow-hidden border border-telegram-accent/20 ${className}`}
+      className={`relative glass-card rounded-3xl p-5 cursor-pointer overflow-hidden group ${className}`}
     >
-      {/* Glow effect */}
+      {/* Animated glow effect */}
       <motion.div
         variants={glowVariants}
         initial="initial"
         animate="animate"
-        className={`absolute inset-0 bg-gradient-to-br ${getRarityColor(gift.rarity)} opacity-20 rounded-2xl`}
+        className={`absolute inset-0 bg-gradient-to-br ${getRarityColor(gift.rarity)} opacity-10 rounded-3xl`}
       />
       
+      {/* Geometric pattern overlay */}
+      <div className="absolute top-0 right-0 w-20 h-20 opacity-5">
+        <Hexagon className="w-full h-full text-case-primary" />
+      </div>
+
       {/* Sparkles animation */}
-      <div className="absolute top-2 right-2">
+      <div className="absolute top-3 right-3">
         <motion.div
+          variants={iconVariants}
+          whileHover="hover"
           animate={{ 
             rotate: [0, 360],
             scale: [1, 1.2, 1]
           }}
           transition={{ 
-            duration: 3,
+            duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         >
-          <Sparkles className="w-5 h-5 text-gift-gold" />
+          <Sparkles className="w-5 h-5 text-case-primary" />
         </motion.div>
       </div>
 
       {/* Gift image/icon */}
-      <div className="relative mb-4">
+      <div className="relative mb-5">
         {gift.image ? (
           <img 
             src={gift.image} 
             alt={gift.name}
-            className="w-full h-32 object-cover rounded-lg"
+            className="w-full h-32 object-cover rounded-2xl"
           />
         ) : (
-          <div className="w-full h-32 bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-lg flex items-center justify-center">
-            <Gift className="w-16 h-16 text-gift-gold" />
+          <div className="w-full h-32 bg-case-gradient rounded-2xl flex items-center justify-center relative overflow-hidden">
+            <motion.div
+              animate={{ 
+                scale: [1, 1.1, 1],
+                rotate: [0, 5, -5, 0]
+              }}
+              transition={{ 
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <Gift className="w-16 h-16 text-white drop-shadow-lg" />
+            </motion.div>
+            
+            {/* Subtle pattern */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
           </div>
         )}
         
         {/* Rarity indicator */}
         {showRarity && (
-          <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getRarityColor(gift.rarity)} text-white`}>
+          <motion.div 
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className={`absolute top-2 left-2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getRarityColor(gift.rarity)} text-white shadow-lg backdrop-blur-sm`}
+          >
             {getRarityText(gift.rarity)}
-          </div>
+          </motion.div>
         )}
       </div>
 
       {/* Gift info */}
-      <div className="relative z-10">
-        <h3 className="text-lg font-semibold text-telegram-text mb-2 truncate">
+      <div className="relative z-10 space-y-3">
+        <h3 className="text-lg font-bold text-telegram-text group-hover:text-case truncate">
           {gift.name}
         </h3>
         
         {gift.description && (
-          <p className="text-sm text-telegram-hint mb-3 line-clamp-2">
+          <p className="text-sm text-telegram-hint line-clamp-2 leading-relaxed">
             {gift.description}
           </p>
         )}
 
         {/* Stats */}
         {showStats && (
-          <div className="flex items-center gap-4 mb-3">
-            <div className="flex items-center gap-1">
+          <div className="flex items-center gap-4">
+            <motion.div 
+              className="flex items-center gap-1"
+              whileHover={{ scale: 1.05 }}
+            >
               <Star className="w-4 h-4 text-gift-gold" />
-              <span className="text-sm text-telegram-hint">
-                {gift.rating || 0}
+              <span className="text-sm font-medium text-telegram-hint">
+                {gift.rating ? gift.rating.toFixed(1) : '0.0'}
               </span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Users className="w-4 h-4 text-telegram-accent" />
-              <span className="text-sm text-telegram-hint">
+            </motion.div>
+            <motion.div 
+              className="flex items-center gap-1"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Users className="w-4 h-4 text-case-secondary" />
+              <span className="text-sm font-medium text-telegram-hint">
                 {gift.totalPurchases || 0}
               </span>
-            </div>
+            </motion.div>
           </div>
         )}
 
         {/* Price */}
         {showPrice && gift.price && (
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pt-2">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-gift-gold to-yellow-600 rounded-full flex items-center justify-center">
+              <motion.div 
+                className="w-7 h-7 bg-case-gradient rounded-full flex items-center justify-center shadow-lg"
+                whileHover={{ scale: 1.1, rotate: 180 }}
+                transition={{ duration: 0.3 }}
+              >
                 <span className="text-xs font-bold text-white">⭐</span>
-              </div>
-              <span className="text-lg font-bold text-telegram-text">
+              </motion.div>
+              <span className="text-xl font-bold text-case">
                 {gift.price}
               </span>
             </div>
             
             {gift.discount && (
-              <div className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+              <motion.div 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+              >
                 -{gift.discount}%
-              </div>
+              </motion.div>
             )}
           </div>
         )}
       </div>
+
+      {/* Hover effect border */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl border-2 border-case-primary opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+        initial={false}
+      />
     </motion.div>
   );
 };

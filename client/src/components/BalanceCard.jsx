@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, Plus, TrendingUp } from 'lucide-react';
+import { Wallet, Plus, TrendingUp, Hexagon } from 'lucide-react';
 
 const BalanceCard = ({ balance, onTopUp, className = "" }) => {
   const formatBalance = (amount) => {
@@ -8,22 +8,36 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, y: -20, scale: 0.95 },
     visible: { 
       opacity: 1, 
+      y: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 300,
-        damping: 25
+        stiffness: 200,
+        damping: 20
       }
     }
   };
 
   const iconVariants = {
-    initial: { rotate: 0 },
+    initial: { rotate: 0, scale: 1 },
     animate: { 
-      rotate: [0, -10, 10, -10, 0],
+      rotate: [0, -5, 5, -5, 0],
+      scale: [1, 1.05, 1],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
+  const balanceVariants = {
+    initial: { scale: 1 },
+    animate: { 
+      scale: [1, 1.02, 1],
       transition: {
         duration: 2,
         repeat: Infinity,
@@ -37,102 +51,116 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
       variants={cardVariants}
       initial="hidden"
       animate="visible"
-      className={`relative bg-gradient-to-br from-telegram-accent to-blue-600 rounded-2xl p-6 text-white overflow-hidden ${className}`}
+      className={`relative glass-card rounded-3xl p-6 overflow-hidden group ${className}`}
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full -translate-y-16 translate-x-16" />
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full translate-y-12 -translate-x-12" />
+      {/* Geometric background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 right-0 w-32 h-32 -translate-y-8 translate-x-8">
+          <Hexagon className="w-full h-full text-case-primary" />
+        </div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 translate-y-6 -translate-x-6">
+          <Hexagon className="w-full h-full text-case-secondary" />
+        </div>
       </div>
+
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-case-gradient opacity-10 rounded-3xl" />
 
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
             <motion.div
               variants={iconVariants}
               initial="initial"
               animate="animate"
-              className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center"
+              className="w-12 h-12 bg-case-gradient rounded-2xl flex items-center justify-center shadow-lg"
             >
-              <Wallet className="w-5 h-5 text-white" />
+              <Wallet className="w-6 h-6 text-white" />
             </motion.div>
             <div>
-              <h3 className="text-lg font-semibold">Баланс</h3>
-              <p className="text-white/70 text-sm">Ваши звездочки</p>
+              <h3 className="text-xl font-bold text-case">Баланс</h3>
+              <p className="text-telegram-hint text-sm">Ваши звездочки</p>
             </div>
           </div>
           
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
             onClick={onTopUp}
-            className="bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors"
+            className="w-10 h-10 bg-case-gradient hover:opacity-90 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg"
           >
             <Plus className="w-5 h-5 text-white" />
           </motion.button>
         </div>
 
         {/* Balance display */}
-        <div className="mb-4">
-          <div className="flex items-center gap-2 mb-2">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-3">
             <motion.div
               animate={{ 
                 scale: [1, 1.1, 1],
                 rotate: [0, 360, 0]
               }}
               transition={{ 
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="w-8 h-8 bg-gradient-to-br from-gift-gold to-yellow-600 rounded-full flex items-center justify-center"
+              className="w-10 h-10 bg-case-gradient rounded-2xl flex items-center justify-center shadow-lg"
             >
               <span className="text-lg font-bold text-white">⭐</span>
             </motion.div>
             <motion.span
               key={balance}
-              initial={{ scale: 1.2 }}
-              animate={{ scale: 1 }}
-              className="text-3xl font-bold"
+              variants={balanceVariants}
+              initial="initial"
+              animate="animate"
+              className="text-4xl font-bold text-case"
             >
               {formatBalance(balance)}
             </motion.span>
           </div>
           
-          <div className="flex items-center gap-1 text-white/80">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm">Готов к покупкам</span>
+          <div className="flex items-center gap-2 text-telegram-hint">
+            <TrendingUp className="w-4 h-4 text-case-secondary" />
+            <span className="text-sm font-medium">Готов к покупкам</span>
           </div>
         </div>
 
         {/* Action buttons */}
         <div className="flex gap-3">
           <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={onTopUp}
-            className="flex-1 bg-white/20 hover:bg-white/30 rounded-xl py-3 px-4 transition-colors"
+            className="flex-1 bg-case-gradient hover:opacity-90 rounded-2xl py-4 px-4 transition-all duration-300 shadow-lg"
           >
             <div className="flex items-center justify-center gap-2">
-              <Plus className="w-4 h-4" />
-              <span className="font-medium">Пополнить</span>
+              <Plus className="w-4 h-4 text-white" />
+              <span className="font-semibold text-white">Пополнить</span>
             </div>
           </motion.button>
           
           <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="flex-1 bg-white/10 hover:bg-white/20 rounded-xl py-3 px-4 transition-colors border border-white/20"
+            className="flex-1 glass-card hover:bg-telegram-secondary/60 rounded-2xl py-4 px-4 transition-all duration-300 border border-case-primary/20"
           >
             <div className="flex items-center justify-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              <span className="font-medium">История</span>
+              <TrendingUp className="w-4 h-4 text-case-secondary" />
+              <span className="font-semibold text-telegram-text">История</span>
             </div>
           </motion.button>
         </div>
       </div>
+
+      {/* Hover glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl bg-case-gradient opacity-0 group-hover:opacity-5 transition-opacity duration-500"
+        initial={false}
+      />
     </motion.div>
   );
 };
