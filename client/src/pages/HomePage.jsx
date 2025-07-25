@@ -4,33 +4,33 @@ import { Search, Filter, Gift, Sparkles, Heart, Star, Hexagon } from 'lucide-rea
 import { useTelegram } from '../hooks/useTelegram';
 import { useGift } from '../contexts/GiftContext';
 import { giftService } from '../services/api';
+import { telegramGifts, giftCategories, giftRarities } from '../data/telegramGifts';
+import useTonConnect from '../hooks/useTonConnect';
 import GiftCard from '../components/GiftCard';
 import BalanceCard from '../components/BalanceCard';
 import GeometricIcon from '../components/GeometricIcon';
+import PurchaseModal from '../components/PurchaseModal';
 
 const HomePage = () => {
   const { user, hapticFeedback, showAlert } = useTelegram();
   const { gifts, balance, loading, setGifts, setBalance, setLoading, setError } = useGift();
+  const { balance: tonBalance, isConnected } = useTonConnect();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedRarity, setSelectedRarity] = useState('all');
   const [sortBy, setSortBy] = useState('popular');
+  const [selectedGift, setSelectedGift] = useState(null);
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
 
-  const categories = [
-    { id: 'all', name: 'Все', icon: Hexagon },
-    { id: 'premium', name: 'Премиум', icon: Star },
-    { id: 'limited', name: 'Лимитед', icon: Sparkles },
-    { id: 'romantic', name: 'Романтика', icon: Heart },
-  ];
+  const categories = giftCategories.map(cat => ({
+    ...cat,
+    icon: cat.icon === 'Hexagon' ? Hexagon : 
+          cat.icon === 'Star' ? Star :
+          cat.icon === 'Sparkles' ? Sparkles :
+          cat.icon === 'Heart' ? Heart : Hexagon
+  }));
 
-  const rarities = [
-    { id: 'all', name: 'Все' },
-    { id: 'common', name: 'Обычные' },
-    { id: 'rare', name: 'Редкие' },
-    { id: 'epic', name: 'Эпические' },
-    { id: 'legendary', name: 'Легендарные' },
-    { id: 'mythic', name: 'Мифические' },
-  ];
+  const rarities = giftRarities;
 
   const sortOptions = [
     { id: 'popular', name: 'Популярные' },
@@ -47,11 +47,13 @@ const HomePage = () => {
   const loadGifts = async () => {
     try {
       setLoading(true);
-      const giftsData = await giftService.getAllGifts();
-      setGifts(giftsData);
+      // Используем данные реальных подарков Telegram
+      setGifts(telegramGifts);
+      setLoading(false);
     } catch (error) {
       console.error('Error loading gifts:', error);
       setError('Не удалось загрузить подарки');
+      setLoading(false);
     }
   };
 
@@ -61,15 +63,25 @@ const HomePage = () => {
       setBalance(balanceData.balance);
     } catch (error) {
       console.error('Error loading balance:', error);
-      // Устанавливаем демо-баланс если API недоступен
-      setBalance(1000);
+      // Устанавливаем демо-баланс в TON если API недоступен
+      setBalance(3.125); // ≈1000 рублей в TON
     }
   };
 
   const handleGiftClick = (gift) => {
     hapticFeedback('light');
-    // Переход к странице подарка
-    console.log('Selected gift:', gift);
+    setSelectedGift(gift);
+    setIsPurchaseModalOpen(true);
+  };
+
+  const handlePurchase = (gift, transaction) => {
+    // Здесь можно обновить состояние приложения после покупки
+    console.log('Gift purchased:', gift, transaction);
+  };
+
+  const handleClosePurchaseModal = () => {
+    setIsPurchaseModalOpen(false);
+    setSelectedGift(null);
   };
 
   const handleTopUp = () => {
@@ -98,77 +110,7 @@ const HomePage = () => {
     }
   });
 
-  // Демо-данные если API недоступен
-  const demoGifts = [
-    {
-      id: 1,
-      name: 'Золотая роза',
-      description: 'Изысканная золотая роза для особенных моментов',
-      price: 100,
-      rarity: 'legendary',
-      category: 'romantic',
-      rating: 4.8,
-      totalPurchases: 145,
-      image: null
-    },
-    {
-      id: 2,
-      name: 'Звездная пыль',
-      description: 'Магическая звездная пыль исполнения желаний',
-      price: 50,
-      rarity: 'epic',
-      category: 'premium',
-      rating: 4.5,
-      totalPurchases: 89,
-      image: null
-    },
-    {
-      id: 3,
-      name: 'Кристалл удачи',
-      description: 'Приносит удачу и исполняет мечты',
-      price: 200,
-      rarity: 'mythic',
-      category: 'limited',
-      rating: 4.9,
-      totalPurchases: 23,
-      image: null
-    },
-    {
-      id: 4,
-      name: 'Сердце дракона',
-      description: 'Редкий кристалл с силой дракона',
-      price: 75,
-      rarity: 'rare',
-      category: 'premium',
-      rating: 4.3,
-      totalPurchases: 67,
-      image: null
-    },
-    {
-      id: 5,
-      name: 'Лунный камень',
-      description: 'Мистический камень с энергией луны',
-      price: 125,
-      rarity: 'epic',
-      category: 'premium',
-      rating: 4.6,
-      totalPurchases: 54,
-      image: null
-    },
-    {
-      id: 6,
-      name: 'Феникс',
-      description: 'Легендарная птица возрождения',
-      price: 300,
-      rarity: 'mythic',
-      category: 'limited',
-      rating: 4.9,
-      totalPurchases: 12,
-      image: null
-    },
-  ];
-
-  const displayGifts = sortedGifts.length > 0 ? sortedGifts : demoGifts;
+  const displayGifts = sortedGifts;
 
   return (
     <div className="min-h-screen bg-case-darker relative overflow-hidden">
@@ -194,7 +136,7 @@ const HomePage = () => {
           </div>
 
           <BalanceCard 
-            balance={balance}
+            balance={isConnected ? tonBalance : balance}
             onTopUp={handleTopUp}
             className="mb-6"
           />
@@ -328,6 +270,14 @@ const HomePage = () => {
           </motion.div>
         )}
       </div>
+
+      {/* Purchase Modal */}
+      <PurchaseModal
+        isOpen={isPurchaseModalOpen}
+        onClose={handleClosePurchaseModal}
+        gift={selectedGift}
+        onPurchase={handlePurchase}
+      />
     </div>
   );
 };

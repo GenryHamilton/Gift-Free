@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Gift, Star, Users, Sparkles, Hexagon } from 'lucide-react';
+import TonPrice from './TonPrice';
 
 const GiftCard = ({ 
   gift, 
@@ -134,11 +135,34 @@ const GiftCard = ({
       {/* Gift image/icon */}
       <div className="relative mb-5">
         {gift.image ? (
-          <img 
-            src={gift.image} 
-            alt={gift.name}
-            className="w-full h-32 object-cover rounded-2xl"
-          />
+          <div className="w-full h-32 rounded-2xl overflow-hidden bg-gradient-to-br from-white/10 to-transparent relative">
+            <img 
+              src={gift.image.replace('.png', '.svg')} 
+              alt={gift.name}
+              className="w-full h-full object-contain p-4"
+              onError={(e) => {
+                // Fallback to emoji if SVG fails
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="w-full h-32 bg-case-gradient rounded-2xl flex items-center justify-center absolute inset-0" style={{display: 'none'}}>
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="text-4xl"
+              >
+                {gift.emoji || '🎁'}
+              </motion.div>
+            </div>
+          </div>
         ) : (
           <div className="w-full h-32 bg-case-gradient rounded-2xl flex items-center justify-center relative overflow-hidden">
             <motion.div
@@ -151,8 +175,9 @@ const GiftCard = ({
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
+              className="text-4xl"
             >
-              <Gift className="w-16 h-16 text-white drop-shadow-lg" />
+              {gift.emoji || '🎁'}
             </motion.div>
             
             {/* Subtle pattern */}
@@ -212,18 +237,7 @@ const GiftCard = ({
         {/* Price */}
         {showPrice && gift.price && (
           <div className="flex items-center justify-between pt-2">
-            <div className="flex items-center gap-2">
-              <motion.div 
-                className="w-7 h-7 bg-case-gradient rounded-full flex items-center justify-center shadow-lg"
-                whileHover={{ scale: 1.1, rotate: 180 }}
-                transition={{ duration: 0.3 }}
-              >
-                <span className="text-xs font-bold text-white">⭐</span>
-              </motion.div>
-              <span className="text-xl font-bold text-case">
-                {gift.price}
-              </span>
-            </div>
+            <TonPrice price={gift.price} size="md" />
             
             {gift.discount && (
               <motion.div 

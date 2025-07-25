@@ -1,0 +1,35 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE0B2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFCC80;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="frostingGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F5F5F5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Cake base -->
+  <ellipse cx="64" cy="100" rx="45" ry="8" fill="#8D6E63"/>
+  <rect x="19" y="60" width="90" height="40" fill="url(#cakeGradient)" rx="5"/>
+  
+  <!-- Frosting -->
+  <path d="M19 60 Q30 50, 40 60 Q50 50, 60 60 Q70 50, 80 60 Q90 50, 100 60 Q109 50, 109 60 L109 75 Q100 65, 90 75 Q80 65, 70 75 Q60 65, 50 75 Q40 65, 30 75 Q20 65, 19 75 Z" fill="url(#frostingGradient)"/>
+  
+  <!-- Cherry on top -->
+  <circle cx="64" cy="55" r="6" fill="#E53935"/>
+  <path d="M64 49 Q66 45, 68 47" stroke="#4CAF50" stroke-width="2" fill="none"/>
+  
+  <!-- Candle -->
+  <rect x="62" y="35" width="4" height="20" fill="#FFD54F"/>
+  <ellipse cx="64" cy="30" rx="3" ry="8" fill="#FF5722"/>
+  
+  <!-- Sparkles -->
+  <g fill="#FFD700" opacity="0.8">
+    <circle cx="35" cy="45" r="2"/>
+    <circle cx="85" cy="40" r="1.5"/>
+    <circle cx="95" cy="55" r="2"/>
+    <circle cx="25" cy="65" r="1"/>
+  </g>
+</svg>

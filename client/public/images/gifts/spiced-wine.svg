@@ -1,0 +1,72 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="wineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8E24AA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4A148C;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FFF;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Glass base -->
+  <ellipse cx="64" cy="110" rx="15" ry="5" fill="#333" opacity="0.3"/>
+  
+  <!-- Glass bowl -->
+  <path d="M45 85 Q45 95, 50 100 L78 100 Q83 95, 83 85 L83 45 Q83 40, 78 40 L50 40 Q45 40, 45 45 Z" fill="url(#glassGradient)" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- Wine -->
+  <path d="M47 85 Q47 93, 52 98 L76 98 Q81 93, 81 85 L81 48 L47 48 Z" fill="url(#wineGradient)"/>
+  
+  <!-- Glass stem -->
+  <rect x="62" y="100" width="4" height="15" fill="#E0E0E0"/>
+  
+  <!-- Glass highlight -->
+  <ellipse cx="55" cy="55" rx="3" ry="15" fill="#FFF" opacity="0.4"/>
+  
+  <!-- Steam -->
+  <g stroke="#FFB74D" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M58 35 Q60 30, 58 25 Q56 20, 58 15">
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M64 35 Q66 30, 64 25 Q62 20, 64 15">
+      <animate attributeName="opacity" values="0.3;0.7;0.3" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M70 35 Q72 30, 70 25 Q68 20, 70 15">
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Cinnamon stick -->
+  <rect x="85" y="60" width="12" height="3" fill="#8D6E63" rx="1.5" transform="rotate(25 91 61.5)"/>
+  <rect x="85" y="60" width="12" height="1" fill="#A1887F" rx="0.5" transform="rotate(25 91 61.5)"/>
+  
+  <!-- Orange slice -->
+  <circle cx="90" cy="45" r="8" fill="#FF9800"/>
+  <g stroke="#E65100" stroke-width="1" fill="none">
+    <line x1="90" y1="37" x2="90" y2="53"/>
+    <line x1="82" y1="45" x2="98" y2="45"/>
+    <line x1="85" y1="39" x2="95" y2="51"/>
+    <line x1="95" y1="39" x2="85" y2="51"/>
+  </g>
+  
+  <!-- Star anise -->
+  <g fill="#8D6E63" transform="translate(35,70)">
+    <circle cx="0" cy="0" r="3"/>
+    <ellipse cx="0" cy="-6" rx="1" ry="3"/>
+    <ellipse cx="5" cy="-3" rx="1" ry="3" transform="rotate(60)"/>
+    <ellipse cx="5" cy="3" rx="1" ry="3" transform="rotate(120)"/>
+    <ellipse cx="0" cy="6" rx="1" ry="3" transform="rotate(180)"/>
+    <ellipse cx="-5" cy="3" rx="1" ry="3" transform="rotate(240)"/>
+    <ellipse cx="-5" cy="-3" rx="1" ry="3" transform="rotate(300)"/>
+  </g>
+  
+  <!-- Sparkles -->
+  <g fill="#FFD700" opacity="0.8">
+    <circle cx="30" cy="30" r="2"/>
+    <circle cx="100" cy="25" r="1.5"/>
+    <circle cx="25" cy="90" r="1"/>
+    <circle cx="105" cy="85" r="2"/>
+  </g>
+</svg>

@@ -1,8 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, Plus, TrendingUp, Hexagon } from 'lucide-react';
+import { Wallet, Plus, TrendingUp, Hexagon, Link, Unlink } from 'lucide-react';
+import TonPrice from './TonPrice';
+import useTonConnect from '../hooks/useTonConnect';
 
 const BalanceCard = ({ balance, onTopUp, className = "" }) => {
+  const { 
+    tonWallet, 
+    balance: tonBalance, 
+    isConnecting, 
+    connectWallet, 
+    disconnectWallet, 
+    formatAddress,
+    isConnected 
+  } = useTonConnect();
+
+  const displayBalance = isConnected ? tonBalance : balance;
+
   const formatBalance = (amount) => {
     return new Intl.NumberFormat('ru-RU').format(amount);
   };
@@ -81,7 +95,9 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
             </motion.div>
             <div>
               <h3 className="text-xl font-bold text-case">Баланс</h3>
-              <p className="text-telegram-hint text-sm">Ваши звездочки</p>
+              <p className="text-telegram-hint text-sm">
+                {isConnected ? `TON: ${formatAddress(tonWallet.address)}` : 'Ваши TON'}
+              </p>
             </div>
           </div>
           
@@ -97,62 +113,79 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
 
         {/* Balance display */}
         <div className="mb-6">
-          <div className="flex items-center gap-3 mb-3">
-            <motion.div
-              animate={{ 
-                scale: [1, 1.1, 1],
-                rotate: [0, 360, 0]
-              }}
-              transition={{ 
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="w-10 h-10 bg-case-gradient rounded-2xl flex items-center justify-center shadow-lg"
-            >
-              <span className="text-lg font-bold text-white">⭐</span>
-            </motion.div>
-            <motion.span
-              key={balance}
-              variants={balanceVariants}
-              initial="initial"
-              animate="animate"
-              className="text-4xl font-bold text-case"
-            >
-              {formatBalance(balance)}
-            </motion.span>
-          </div>
+          <TonPrice 
+            price={displayBalance} 
+            size="xl" 
+            showRub={true}
+            className="mb-3"
+          />
           
           <div className="flex items-center gap-2 text-telegram-hint">
-            <TrendingUp className="w-4 h-4 text-case-secondary" />
-            <span className="text-sm font-medium">Готов к покупкам</span>
+            {isConnected ? (
+              <>
+                <Link className="w-4 h-4 text-green-500" />
+                <span className="text-sm font-medium">Кошелек подключен</span>
+              </>
+            ) : (
+              <>
+                <Unlink className="w-4 h-4 text-orange-500" />
+                <span className="text-sm font-medium">Подключите кошелек</span>
+              </>
+            )}
           </div>
         </div>
 
         {/* Action buttons */}
         <div className="flex gap-3">
-          <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={onTopUp}
-            className="flex-1 bg-case-gradient hover:opacity-90 rounded-2xl py-4 px-4 transition-all duration-300 shadow-lg"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <Plus className="w-4 h-4 text-white" />
-              <span className="font-semibold text-white">Пополнить</span>
-            </div>
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="flex-1 glass-card hover:bg-telegram-secondary/60 rounded-2xl py-4 px-4 transition-all duration-300 border border-case-primary/20"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <TrendingUp className="w-4 h-4 text-case-secondary" />
-              <span className="font-semibold text-telegram-text">История</span>
-            </div>
-          </motion.button>
+          {isConnected ? (
+            <>
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={onTopUp}
+                className="flex-1 bg-case-gradient hover:opacity-90 rounded-2xl py-4 px-4 transition-all duration-300 shadow-lg"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Plus className="w-4 h-4 text-white" />
+                  <span className="font-semibold text-white">Пополнить</span>
+                </div>
+              </motion.button>
+              
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={disconnectWallet}
+                className="flex-1 glass-card hover:bg-red-500/20 rounded-2xl py-4 px-4 transition-all duration-300 border border-red-500/20"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Unlink className="w-4 h-4 text-red-500" />
+                  <span className="font-semibold text-red-500">Отключить</span>
+                </div>
+              </motion.button>
+            </>
+          ) : (
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={connectWallet}
+              disabled={isConnecting}
+              className="w-full bg-case-gradient hover:opacity-90 rounded-2xl py-4 px-4 transition-all duration-300 shadow-lg disabled:opacity-50"
+            >
+              <div className="flex items-center justify-center gap-2">
+                {isConnecting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                    <span className="font-semibold text-white">Подключение...</span>
+                  </>
+                ) : (
+                  <>
+                    <Link className="w-4 h-4 text-white" />
+                    <span className="font-semibold text-white">Подключить TON кошелек</span>
+                  </>
+                )}
+              </div>
+            </motion.button>
+          )}
         </div>
       </div>
 
