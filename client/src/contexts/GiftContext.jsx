@@ -48,10 +48,10 @@ const giftReducer = (state, action) => {
     case 'SET_FILTERS':
       return { ...state, filters: { ...state.filters, ...action.payload } };
     case 'OPEN_CASE':
-      return { 
-        ...state, 
+      return {
+        ...state,
         balance: state.balance - action.payload.casePrice,
-        loading: false 
+        loading: false
       };
     default:
       return state;

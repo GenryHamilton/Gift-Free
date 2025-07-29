@@ -134,11 +134,11 @@ const GiftCard = ({
       <div className="relative mb-3">
         {gift.image_url ? (
           <div className="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-gray-600">
-            <img 
+          <img 
               src={gift.image_url} 
-              alt={gift.name}
+            alt={gift.name}
               className="w-full h-full object-cover"
-            />
+          />
           </div>
         ) : (
           <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-full flex items-center justify-center border-2 border-gray-600">

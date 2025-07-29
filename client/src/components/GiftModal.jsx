@@ -108,7 +108,7 @@ const GiftModal = ({ gift, isOpen, onClose, onPurchase, balance }) => {
                   </div>
                 ) : (
                   <div className="w-24 h-24 mx-auto bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-full flex items-center justify-center border-4 border-telegram-accent/30">
-                    <Gift className="w-12 h-12 text-gift-gold" />
+                <Gift className="w-12 h-12 text-gift-gold" />
                   </div>
                 )}
                 
@@ -169,7 +169,7 @@ const GiftModal = ({ gift, isOpen, onClose, onPurchase, balance }) => {
                   <span>Купить для себя</span>
                 </div>
               </motion.button>
-
+              
               {/* Send to friend */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -182,10 +182,10 @@ const GiftModal = ({ gift, isOpen, onClose, onPurchase, balance }) => {
                     : 'border-telegram-bg text-telegram-hint cursor-not-allowed'
                 }`}
               >
-                <div className="flex items-center justify-center gap-2">
+                  <div className="flex items-center justify-center gap-2">
                   <Send className="w-5 h-5" />
                   <span>Отправить другу</span>
-                </div>
+                  </div>
               </motion.button>
             </div>
 

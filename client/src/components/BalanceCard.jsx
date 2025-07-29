@@ -15,8 +15,8 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
     visible: { opacity: 1, y: 0 },
     hover: { 
       y: -4,
-      transition: { 
-        type: "spring", 
+      transition: {
+        type: "spring",
         stiffness: 300,
         damping: 25
       }
@@ -24,7 +24,7 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
   };
 
   const coinVariants = {
-    animate: {
+    animate: { 
       rotate: [0, 360],
       scale: [1, 1.1, 1],
       transition: {
@@ -45,19 +45,19 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
     >
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <motion.div
+            <motion.div
             variants={coinVariants}
-            animate="animate"
+              animate="animate"
             className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center"
-          >
+            >
             <Coins className="w-5 h-5 text-white" />
-          </motion.div>
-          <div>
+            </motion.div>
+            <div>
             <h3 className="text-sm font-medium text-telegram-text">Баланс</h3>
             <p className="text-xs text-telegram-hint">Ваши средства</p>
           </div>
         </div>
-        
+
         <div className="text-right">
           <div className="flex items-center gap-1">
             <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
@@ -71,21 +71,21 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
             <TrendingUp className="w-3 h-3" />
             <span>+2.5%</span>
           </div>
+          </div>
         </div>
-      </div>
 
       <div className="flex gap-2">
-        <motion.button
+          <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={onTopUp}
+            onClick={onTopUp}
           className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-gradient-to-r from-telegram-accent to-blue-600 rounded-lg text-white text-sm font-medium hover:from-telegram-accent/90 hover:to-blue-600/90 transition-all"
-        >
-          <Plus className="w-4 h-4" />
+          >
+              <Plus className="w-4 h-4" />
           <span>Пополнить</span>
-        </motion.button>
-        
-        <motion.button
+          </motion.button>
+          
+          <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="flex items-center justify-center gap-2 py-2 px-3 bg-telegram-secondary rounded-lg text-telegram-text text-sm font-medium hover:bg-telegram-accent/20 transition-colors"
@@ -109,7 +109,7 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
           <div className="text-center">
             <div className="text-telegram-hint">Получено</div>
             <div className="text-telegram-text font-medium">5</div>
-          </div>
+            </div>
         </div>
       </div>
     </motion.div>

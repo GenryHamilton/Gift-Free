@@ -64,20 +64,20 @@ const HomePage = () => {
                   {user?.first_name?.[0] || 'U'}
                 </span>
               </div>
-              <div>
+            <div>
                 <p className="text-white text-sm font-medium">
                   {user?.first_name || 'Пользователь'}
-                </p>
+              </p>
                 <p className="text-gray-400 text-xs">
                   Telegram
                 </p>
               </div>
-            </div>
-            
+          </div>
+
             {/* Balance - Right Side */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               onClick={handleBalanceClick}
               className="flex items-center gap-2 px-3 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
             >
@@ -87,48 +87,48 @@ const HomePage = () => {
               <span className="text-white font-bold text-sm">
                 {balance.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TON
               </span>
-            </motion.button>
-          </div>
+              </motion.button>
+        </div>
         </div>
       </div>
 
       {/* Main Content with Top Padding */}
       <div className="pt-20">
         {/* Cases Grid */}
-        <div className="px-4 pb-20">
-          {loading ? (
+      <div className="px-4 pb-20">
+        {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {[...Array(6)].map((_, i) => (
+            {[...Array(6)].map((_, i) => (
                 <div key={i} className="bg-gray-800 rounded-2xl overflow-hidden animate-pulse">
                   <div className="h-40 bg-gray-700" />
                   <div className="p-4">
                     <div className="h-6 bg-gray-700 rounded" />
                   </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            >
+          >
               {cases.map((caseData, index) => (
-                <motion.div
+              <motion.div
                   key={caseData.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
                   <CaseCard
                     caseData={caseData}
                     onClick={() => handleCaseClick(caseData)}
                     isLocked={balance < caseData.price}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
 
           {/* Empty State */}
           {!loading && cases.length === 0 && (
