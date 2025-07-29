@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import { localDataService } from '../services/localData';
 
 const GiftContext = createContext();
 
@@ -9,8 +10,18 @@ const initialState = {
   loading: false,
   error: null,
   selectedGift: null,
-  balance: 0,
+  balance: 1000, // Демо-баланс
   transactions: [],
+  categories: [],
+  giftClasses: [],
+  collectionStats: null,
+  filters: {
+    category: 'all',
+    class: 'all',
+    minPrice: null,
+    maxPrice: null,
+    sortBy: 'name'
+  }
 };
 
 const giftReducer = (state, action) => {
@@ -23,6 +34,18 @@ const giftReducer = (state, action) => {
     
     case 'SET_GIFTS':
       return { ...state, gifts: action.payload, loading: false };
+    
+    case 'SET_CATEGORIES':
+      return { ...state, categories: action.payload };
+    
+    case 'SET_GIFT_CLASSES':
+      return { ...state, giftClasses: action.payload };
+    
+    case 'SET_COLLECTION_STATS':
+      return { ...state, collectionStats: action.payload };
+    
+    case 'SET_FILTERS':
+      return { ...state, filters: { ...state.filters, ...action.payload } };
     
     case 'SET_MY_GIFTS':
       return { ...state, myGifts: action.payload, loading: false };
@@ -56,7 +79,7 @@ const giftReducer = (state, action) => {
       return {
         ...state,
         myGifts: [...state.myGifts, action.payload],
-        balance: state.balance - action.payload.price,
+        balance: state.balance - action.payload.price_ton,
         loading: false
       };
     
@@ -85,6 +108,42 @@ const giftReducer = (state, action) => {
 export const GiftProvider = ({ children }) => {
   const [state, dispatch] = useReducer(giftReducer, initialState);
 
+  // Инициализация данных при загрузке
+  useEffect(() => {
+    const initializeData = async () => {
+      try {
+        dispatch({ type: 'SET_LOADING', payload: true });
+        
+        // Загружаем все данные
+        const gifts = localDataService.getAllGifts();
+        const categories = localDataService.getCategories();
+        const giftClasses = localDataService.getGiftClasses();
+        const collectionStats = localDataService.getCollectionStats();
+        
+        dispatch({ type: 'SET_GIFTS', payload: gifts });
+        dispatch({ type: 'SET_CATEGORIES', payload: categories });
+        dispatch({ type: 'SET_GIFT_CLASSES', payload: giftClasses });
+        dispatch({ type: 'SET_COLLECTION_STATS', payload: collectionStats });
+        
+      } catch (error) {
+        console.error('Error initializing data:', error);
+        dispatch({ type: 'SET_ERROR', payload: 'Ошибка загрузки данных' });
+      }
+    };
+
+    initializeData();
+  }, []);
+
+  // Функция для фильтрации подарков
+  const getFilteredGifts = () => {
+    return localDataService.filterGifts(state.filters);
+  };
+
+  // Функция для поиска подарков
+  const searchGifts = (query) => {
+    return localDataService.searchGifts(query);
+  };
+
   const value = {
     ...state,
     dispatch,
@@ -95,12 +154,18 @@ export const GiftProvider = ({ children }) => {
     setReceivedGifts: (gifts) => dispatch({ type: 'SET_RECEIVED_GIFTS', payload: gifts }),
     setSelectedGift: (gift) => dispatch({ type: 'SET_SELECTED_GIFT', payload: gift }),
     setBalance: (balance) => dispatch({ type: 'SET_BALANCE', payload: balance }),
+    setFilters: (filters) => dispatch({ type: 'SET_FILTERS', payload: filters }),
     addGift: (gift) => dispatch({ type: 'ADD_GIFT', payload: gift }),
     updateGift: (gift) => dispatch({ type: 'UPDATE_GIFT', payload: gift }),
     purchaseGift: (gift) => dispatch({ type: 'PURCHASE_GIFT', payload: gift }),
     sendGift: (gift) => dispatch({ type: 'SEND_GIFT', payload: gift }),
     receiveGift: (gift) => dispatch({ type: 'RECEIVE_GIFT', payload: gift }),
     setTransactions: (transactions) => dispatch({ type: 'SET_TRANSACTIONS', payload: transactions }),
+    getFilteredGifts,
+    searchGifts,
+    getGiftById: localDataService.getGiftById,
+    getGiftsByCategory: localDataService.getGiftsByCategory,
+    getGiftsByClass: localDataService.getGiftsByClass,
   };
 
   return (

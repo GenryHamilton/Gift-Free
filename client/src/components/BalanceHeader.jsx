@@ -1,26 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Coins, TrendingUp, History, Plus } from 'lucide-react';
+import { Coins, TrendingUp, History, Plus, Star } from 'lucide-react';
+import tonSymbol from '../assets/ton_symbol.svg';
 
-const BalanceCard = ({ balance, onTopUp, className = "" }) => {
+const BalanceHeader = ({ balance, onTopUp, onHistory }) => {
   const formatBalance = (balance) => {
     return balance.toLocaleString('ru-RU', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-    hover: { 
-      y: -4,
-      transition: { 
-        type: "spring", 
-        stiffness: 300,
-        damping: 25
-      }
-    }
   };
 
   const coinVariants = {
@@ -36,19 +24,13 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
   };
 
   return (
-    <motion.div
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover="hover"
-      className={`bg-gradient-to-br from-telegram-accent/20 to-telegram-accent/10 rounded-2xl p-4 border border-telegram-accent/30 ${className}`}
-    >
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
+    <div className="bg-gradient-to-br from-telegram-accent/20 to-telegram-accent/10 rounded-2xl p-4 border border-telegram-accent/30 mb-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
           <motion.div
             variants={coinVariants}
             animate="animate"
-            className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center"
+            className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center"
           >
             <Coins className="w-5 h-5 text-white" />
           </motion.div>
@@ -59,22 +41,22 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
         </div>
         
         <div className="text-right">
-          <div className="flex items-center gap-1">
-            <div className="w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-              <span className="text-xs font-bold text-white">⚡</span>
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center">
+              <img src={tonSymbol} alt="TON" className="w-7 h-7" />
             </div>
             <span className="text-lg font-bold text-telegram-text">
               {formatBalance(balance)} TON
             </span>
           </div>
           <div className="flex items-center gap-1 text-xs text-green-400">
-            <TrendingUp className="w-3 h-3" />
+            <Star className="w-3 h-3" />
             <span>+2.5%</span>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-3">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -88,6 +70,7 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={onHistory}
           className="flex items-center justify-center gap-2 py-2 px-3 bg-telegram-secondary rounded-lg text-telegram-text text-sm font-medium hover:bg-telegram-accent/20 transition-colors"
         >
           <History className="w-4 h-4" />
@@ -112,8 +95,8 @@ const BalanceCard = ({ balance, onTopUp, className = "" }) => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
-export default BalanceCard;
+export default BalanceHeader; 

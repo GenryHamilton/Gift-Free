@@ -1,47 +1,73 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Gift, Star, Users, Sparkles } from 'lucide-react';
+import tonSymbol from '../assets/ton_symbol.svg';
 
 const GiftCard = ({ 
   gift, 
   onClick, 
   showPrice = true, 
-  showRarity = true, 
-  showStats = true,
+  showClass = true, 
+  showStats = false,
   className = ""
 }) => {
-  const getRarityColor = (rarity) => {
-    switch (rarity) {
-      case 'common':
-        return 'from-gray-400 to-gray-600';
-      case 'rare':
+  const getClassColor = (giftClass) => {
+    switch (giftClass) {
+      case 'food':
+        return 'from-orange-400 to-orange-600';
+      case 'accessory':
         return 'from-blue-400 to-blue-600';
-      case 'epic':
+      case 'mystic':
         return 'from-purple-400 to-purple-600';
-      case 'legendary':
+      case 'utility':
+        return 'from-gray-400 to-gray-600';
+      case 'drink':
+        return 'from-red-400 to-red-600';
+      case 'celebration':
         return 'from-yellow-400 to-yellow-600';
-      case 'mythic':
+      case 'tech':
+        return 'from-cyan-400 to-cyan-600';
+      case 'romantic':
         return 'from-pink-400 to-pink-600';
+      case 'jewelry':
+        return 'from-yellow-400 to-yellow-600';
+      case 'cosmic':
+        return 'from-indigo-400 to-indigo-600';
       default:
         return 'from-gray-400 to-gray-600';
     }
   };
 
-  const getRarityText = (rarity) => {
-    switch (rarity) {
-      case 'common':
-        return 'Обычный';
-      case 'rare':
-        return 'Редкий';
-      case 'epic':
-        return 'Эпический';
-      case 'legendary':
-        return 'Легендарный';
-      case 'mythic':
-        return 'Мифический';
-      default:
-        return 'Обычный';
-    }
+  const getClassDisplayName = (giftClass) => {
+    const classNames = {
+      'food': 'Еда',
+      'accessory': 'Аксессуары',
+      'mystic': 'Мистические',
+      'utility': 'Утилитарные',
+      'drink': 'Напитки',
+      'celebration': 'Праздничные',
+      'tech': 'Технологические',
+      'romantic': 'Романтические',
+      'jewelry': 'Украшения',
+      'cosmic': 'Космические'
+    };
+    return classNames[giftClass] || giftClass;
+  };
+
+  const getClassIcon = (giftClass) => {
+    const classIcons = {
+      'food': '🍰',
+      'accessory': '🎩',
+      'mystic': '🔮',
+      'utility': '📅',
+      'drink': '🍷',
+      'celebration': '🎉',
+      'tech': '📱',
+      'romantic': '💕',
+      'jewelry': '💍',
+      'cosmic': '⭐'
+    };
+    return classIcons[giftClass] || '🎁';
   };
 
   const cardVariants = {
@@ -77,14 +103,14 @@ const GiftCard = ({
       whileHover="hover"
       whileTap={{ scale: 0.95 }}
       onClick={onClick}
-      className={`relative bg-gradient-to-br from-telegram-secondary to-telegram-bg rounded-2xl p-4 cursor-pointer overflow-hidden border border-telegram-accent/20 ${className}`}
+      className={`relative bg-gray-800 rounded-2xl p-3 cursor-pointer overflow-hidden border border-gray-700 ${className}`}
     >
       {/* Glow effect */}
       <motion.div
         variants={glowVariants}
         initial="initial"
         animate="animate"
-        className={`absolute inset-0 bg-gradient-to-br ${getRarityColor(gift.rarity)} opacity-20 rounded-2xl`}
+        className={`absolute inset-0 bg-gradient-to-br ${getClassColor(gift.class)} opacity-20 rounded-2xl`}
       />
       
       {/* Sparkles animation */}
@@ -100,79 +126,63 @@ const GiftCard = ({
             ease: "easeInOut"
           }}
         >
-          <Sparkles className="w-5 h-5 text-gift-gold" />
+          <Sparkles className="w-4 h-4 text-gift-gold" />
         </motion.div>
       </div>
 
-      {/* Gift image/icon */}
-      <div className="relative mb-4">
-        {gift.image ? (
-          <img 
-            src={gift.image} 
-            alt={gift.name}
-            className="w-full h-32 object-cover rounded-lg"
-          />
+      {/* Gift image/avatar */}
+      <div className="relative mb-3">
+        {gift.image_url ? (
+          <div className="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-gray-600">
+            <img 
+              src={gift.image_url} 
+              alt={gift.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
         ) : (
-          <div className="w-full h-32 bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-lg flex items-center justify-center">
-            <Gift className="w-16 h-16 text-gift-gold" />
+          <div className="w-16 h-16 mx-auto bg-gradient-to-br from-gift-gold/20 to-gift-gold/40 rounded-full flex items-center justify-center border-2 border-gray-600">
+            <Gift className="w-8 h-8 text-gift-gold" />
           </div>
         )}
         
-        {/* Rarity indicator */}
-        {showRarity && (
-          <div className={`absolute top-2 left-2 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getRarityColor(gift.rarity)} text-white`}>
-            {getRarityText(gift.rarity)}
+        {/* Class indicator */}
+        {showClass && (
+          <div className={`absolute -bottom-1 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getClassColor(gift.class)} text-white flex items-center gap-1`}>
+            <span className="text-xs">{getClassIcon(gift.class)}</span>
           </div>
         )}
       </div>
 
       {/* Gift info */}
-      <div className="relative z-10">
-        <h3 className="text-lg font-semibold text-telegram-text mb-2 truncate">
+      <div className="relative z-10 text-center">
+        <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">
           {gift.name}
         </h3>
         
-        {gift.description && (
-          <p className="text-sm text-telegram-hint mb-3 line-clamp-2">
-            {gift.description}
-          </p>
+        {/* Price with TON symbol */}
+        {showPrice && (
+          <div className="flex items-center justify-center gap-1 mb-2">
+            <div className="w-5 h-5 rounded-full flex items-center justify-center">
+              <img src={tonSymbol} alt="TON" className="w-5 h-5" />
+            </div>
+            <span className="text-gift-gold text-sm font-bold">
+              {gift.price_ton} SHAKE
+            </span>
+          </div>
         )}
 
         {/* Stats */}
         {showStats && (
-          <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center justify-center gap-3 text-xs text-gray-400">
             <div className="flex items-center gap-1">
-              <Star className="w-4 h-4 text-gift-gold" />
-              <span className="text-sm text-telegram-hint">
-                {gift.rating || 0}
-              </span>
+              <Star className="w-3 h-3" />
+              <span>4.8</span>
             </div>
             <div className="flex items-center gap-1">
-              <Users className="w-4 h-4 text-telegram-accent" />
-              <span className="text-sm text-telegram-hint">
-                {gift.totalPurchases || 0}
-              </span>
+              <Users className="w-3 h-3" />
+              <span>145</span>
             </div>
-          </div>
-        )}
-
-        {/* Price */}
-        {showPrice && gift.price && (
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-gradient-to-br from-gift-gold to-yellow-600 rounded-full flex items-center justify-center">
-                <span className="text-xs font-bold text-white">⭐</span>
-              </div>
-              <span className="text-lg font-bold text-telegram-text">
-                {gift.price}
-              </span>
-            </div>
-            
-            {gift.discount && (
-              <div className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                -{gift.discount}%
-              </div>
-            )}
           </div>
         )}
       </div>

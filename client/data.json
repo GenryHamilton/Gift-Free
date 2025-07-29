@@ -1,0 +1,374 @@
+{
+    "gifts_collection": {
+      "title": "Telegram Gifts Collection от GetGems",
+      "description": "Коллекция из 30 уникальных подарков Telegram с различными ценами",
+      "total_items": 30,
+      "price_range": {
+        "min_ton": 1.0,
+        "max_ton": 1420.0
+      },
+      "categories": {
+        "budget": [
+          {
+            "name": "Whip Cupcake",
+            "base_name": "Whip Cupcake",
+            "price_ton": 1.0,
+            "id": 29720,
+            "class": "food",
+            "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+          },
+          {
+            "name": "Jester Hat",
+            "base_name": "Jester Hat",
+            "price_ton": 1.1,
+            "id": 24595,
+            "class": "accessory",
+            "image_url": "https://i.getgems.io/PVMSdUkBICfLmBv2tgRTJ-6KGFuVTM68whTJVnD0kN4/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNCS19KQkFTQUE1WFZ6MUQxN1BuLS1rUWFNV20wYjl3UmVWdHNFZFJPNFRneTkvNzYyMTg3YjY1OGEyMDU0Mw"
+          },
+          {
+            "name": "Snake Box",
+            "base_name": "Snake Box",
+            "price_ton": 1.1,
+            "id": 39666,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/TYTiRzWvhteWfhdAHfUmKvSef_TX24SQ3xwYLXABZjY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJiVUt4NUNhbEVseTJUZWtETmVGYnY0ZTAycGo2eHNBcVhaUDBYX0FwcktqNEkvYmVmMGRkMWZjN2ZkYzQ4OQ"
+          },
+          {
+            "name": "Witch Hat",
+            "base_name": "Witch Hat",
+            "price_ton": 1.21,
+            "id": 14343,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/4UtabuQMzcEsufV04j_DFes1tqSXRKtjM7Zlsk0XPlk/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJEOGFCS0M0TnNuWU1xdGtDZlBRazJFVm5pZXluSlFwMVVnWlZ5eDFWbVI1TWwvYzg0MWI4Y2JmOTVmOGYxMw"
+          },
+          {
+            "name": "Desk Calendar",
+            "base_name": "Desk Calendar",
+            "price_ton": 1.21,
+            "id": 69000,
+            "class": "utility",
+            "image_url": "https://i.getgems.io/k7yy6E9U1za8pjl3CnnIoB77kbsYF0aCH1HCKFDL474/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJNY2ZNQVpsTVVyMVczWDhrZEV3M2ZKTVVBYVdINC1YY21FNVI1UmZGSVkwRTIvYzQwMzI1OGFjNjFkMjRmZQ"
+          },
+          {
+            "name": "Hex Pot",
+            "base_name": "Hex Pot",
+            "price_ton": 1.3,
+            "id": 29452,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/BiCfqgtfwhgv2eCeoAK9Tjrk2MTSqyxhLs8p58kRVyY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUI2QXRCUE91VHRRbWw4b1NBN1g4WnFKNVFtY09ZWXFvejkyc1FZWEdVUXJ4eUIvMDVkMWNhZDNhYzEzYWNhNg"
+          },
+          {
+            "name": "Lol Pop",
+            "base_name": "Lol Pop",
+            "price_ton": 1.3,
+            "id": 272857,
+            "class": "food",
+            "image_url": "https://i.getgems.io/rDcZtcQUHSIIZLIh_NACepi8EqfNmhjBM2uj9_hd0Ac/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUM2emppZDh2Sk5FV3FjWGsxMFhqc2RETFJLYmNQWnpiSHVzdUVXNkZva09XSW0vNzYwYmI1YTA5ZTA1MDk1MQ"
+          },
+          {
+            "name": "Candy Cane",
+            "base_name": "Candy Cane",
+            "price_ton": 1.31,
+            "id": 49894,
+            "class": "food",
+            "image_url": "https://i.getgems.io/xunzNglSSaVlHzZU9U3z2Lz5Bx2gZygKPZjvkOVuxBI/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUURMTTY1dDBzaFM3Z1pBZzBsTWx0R0hZaHNVOTRQenNNSkhoWWlibVJWN2tkVXMvMmYzYTdjNTk5NGMxNzU3MA"
+          },
+          {
+            "name": "Spiced Wine",
+            "base_name": "Spiced Wine",
+            "price_ton": 1.31,
+            "id": 64118,
+            "class": "drink",
+            "image_url": "https://i.getgems.io/zEBU4dItjVKC3HHRE-O47uXVZRrHKzCSNQYLCP4Uj1c/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUE4RENXeUNXeXl3Z09LWU9SZXJSb1NWZXZXclVRX0ZqS1FnTmloeFkxMjI3eDcvYTdjMmQxM2I2NjNmYTNhMQ"
+          }
+        ],
+        "medium": [
+          {
+            "name": "B-Day Candle",
+            "base_name": "B-Day Candle",
+            "price_ton": 7.0,
+            "id": 188013,
+            "class": "celebration",
+            "image_url": "https://i.getgems.io/nMU5IxwSqlx2cnv-tko2i4fgz97mxxt3hpOXpBJxYRQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUN3RUZmVWJiUi0yMmZuM1ZneFVwQmlsN2J3QlFxRUhtN3dnUVliV1k5YzA4WUovZDI3ODA0MDg0ZmIyYzZhMw"
+          },
+          {
+            "name": "Tama Gadget",
+            "base_name": "Tama Gadget",
+            "price_ton": 12.0,
+            "id": 37448,
+            "class": "tech",
+            "image_url": "https://i.getgems.io/3p0M8ePo7C4ANHJNhfaQORiXHeqB_Yokk6sKuzdRUrc/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFfa3gyV095ZFhXellVWU8xRFA4MGFIbDR5aGxMR1loeGpQQXRSUE5qTWdmWU0vMzE4NmJiNWMwZDdkOGM2Yw"
+          },
+          {
+            "name": "Hypno Lollipop",
+            "base_name": "Hypno Lollipop",
+            "price_ton": 25.0,
+            "id": 39471,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/gL-5w1KCgON3UA5PdxSnUImw2gtuHkpqW7v2HzXVBUY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUM2NVl5Nk4wNHZIb2VDSjB5bzRxbGw1ZXUtWmFXYlM1bnhzZGlseHltaG1TdXMvOTE1NzE2MzI0NGEzOGQ1Nw"
+          },
+          {
+            "name": "Eternal Rose",
+            "base_name": "Eternal Rose",
+            "price_ton": 19.8,
+            "id": 7836,
+            "class": "romantic",
+            "image_url": "https://i.getgems.io/yn-ywqS6d0NsjH4f4svNQ-X2B5BL8LoGIxBMKLF-oO0/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUR1bXkzYm5aWXpWNGJTV01TU1prbVhxeDUwWHVINWQ5UmxYX3lFaTJGTmxpdmsvYjJhMTQxYTY4MmJkNzcxMg"
+          },
+          {
+            "name": "Top Hat",
+            "base_name": "Top Hat",
+            "price_ton": 38.0,
+            "id": 30303,
+            "class": "accessory",
+            "image_url": "https://i.getgems.io/t66CfEjVPRu3H7gd8URf_0yuFbn8r6baogj4UhT5_pQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFEdkp4TXhDSEE3ZlJsWWpvY2VCT1JmN1J3S3MwcnpqVmFLZXBRQUNNblp6RzcvZmNiYTE1M2Y1Y2Q4ZGExNQ"
+          },
+          {
+            "name": "Love Potion",
+            "base_name": "Love Potion",
+            "price_ton": 20.0,
+            "id": 66666,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/zKpCtPCDvnuwHslDCP7f4OLRTZN2jXwuXhAn4fPaV2k/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUQ3eUR1MldDZ2Q5VXp4MWRGX0RRa1dLN0laSko0TXA5TTlnMXJHVVVpUUU0M20vMjkwZTEwMjU1ODBjZjY2Yg"
+          },
+          {
+            "name": "Lush Bouquet",
+            "base_name": "Lush Bouquet",
+            "price_ton": 50.0,
+            "id": 177893,
+            "class": "romantic",
+            "image_url": "https://i.getgems.io/zxOkg34S3HuKEllZej1R50Fu1195tYyM90OnLVSm4Js/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUEybEhjdlpXV19iTl8yTk1LcmtFVXY5eHo2Zng4d1RFNXVwYTh1MW5lWmI2aEovMDY4OWRhYjZhNWEzNWQzMw"
+          }
+        ],
+        "premium": [
+          {
+            "name": "Genie Lamps",
+            "base_name": "Genie Lamps",
+            "price_ton": 65.0,
+            "id": 20202,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/nzMJkmZHnHzHGs3jqQbtiWecsNsdmXnKoLcHzj-92iw/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUN0MkMzeUNSTlgyNjdCM2w2aDFRc1U2YWdtNFpnVEFiN05wVkdpRktsQlhPQUEvOTZkYjY1MDYxNDc5MTdlZA"
+          },
+          {
+            "name": "Sharp Tongues",
+            "base_name": "Sharp Tongues",
+            "price_ton": 75.0,
+            "id": 44444,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/9EPlvwRPbi89sYi_am46mJG_l9NuvYsBRlDopgpw9-s/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJ3MnRPNVVhSjRjX1lYdDNJOHk1S0QwazM3c3RhWnhlZFYyTzVIbXJ5aUswZE4vZTlkMDUyMTRkY2UxZmEzMA"
+          },
+          {
+            "name": "Magic Potion",
+            "base_name": "Magic Potion",
+            "price_ton": 90.0,
+            "id": 77777,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/IcVEfdfbKTZS-VvC6nWSspjXGa-zMiki1dH_Bh8ylfo/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUF0RlU5R3JHZml4NFVHOURPaXZONThReHZnQkpVYUFaX3BkWkJaQ21iaEtvNFAvNWVkNTcwMjMxMDVjOTViYg"
+          },
+          {
+            "name": "Diamond Ring",
+            "base_name": "Diamond Ring",
+            "price_ton": 22.0,
+            "id": 56789,
+            "class": "jewelry",
+            "image_url": "https://i.getgems.io/WhPQGNYEfjlrFtpmNO1QXs1JSarUD7wXK5OJZOkif4E/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNXaDFsUGx0eVR3Q1d4Q1htNHVtTDV0UFpvWFI4a1RJY1QtcGQwSnFvYWRMSG8vZTkzM2VlMDBmNzRkZDViOQ"
+          },
+          {
+            "name": "Precious Peach",
+            "base_name": "Precious Peach",
+            "price_ton": 200.0,
+            "id": 33333,
+            "class": "mystic",
+            "image_url": "https://i.getgems.io/sYYc5J6dbJEvW1NVOj_76CSiPQDEeQZw_ca8z5oLc1w/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUE0aTU4aXVTOURVWVJ0VVo5N3NabzVtbmtiaVlVQnBXWFFPZTNkRVVDY1AxVzgvYTQ4OWNkZGUxNGFhODVkOA"
+          },
+          {
+            "name": "Astral Shard",
+            "base_name": "Astral Shard",
+            "price_ton": 300.0,
+            "id": 55555,
+            "class": "cosmic",
+            "image_url": "https://i.getgems.io/RrueixjTg2Q9l8Fo6ZcVLh6pfjVzmCtQ32EmADlRiCI/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUURJUmVsZU9rVHhDRDRnX1hFbTh4ajBMWU5nNi16TXNUR0FBd0NBLXZFYmtHQnUvOTNlZTY5N2E0ZmM2N2YxYQ"
+          }
+        ]
+      }
+    },
+    "gifts": [
+      {
+        "name": "Whip Cupcake",
+        "base_name": "Whip Cupcake",
+        "price_ton": 1.0,
+        "id": 29720,
+        "class": "food",
+        "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+      },
+      {
+        "name": "Jester Hat",
+        "base_name": "Jester Hat",
+        "price_ton": 1.1,
+        "id": 24595,
+        "class": "accessory",
+        "image_url": "https://i.getgems.io/PVMSdUkBICfLmBv2tgRTJ-6KGFuVTM68whTJVnD0kN4/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNCS19KQkFTQUE1WFZ6MUQxN1BuLS1rUWFNV20wYjl3UmVWdHNFZFJPNFRneTkvNzYyMTg3YjY1OGEyMDU0Mw"
+      },
+      {
+        "name": "Snake Box",
+        "base_name": "Snake Box",
+        "price_ton": 1.1,
+        "id": 39666,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/TYTiRzWvhteWfhdAHfUmKvSef_TX24SQ3xwYLXABZjY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJiVUt4NUNhbEVseTJUZWtETmVGYnY0ZTAycGo2eHNBcVhaUDBYX0FwcktqNEkvYmVmMGRkMWZjN2ZkYzQ4OQ"
+      },
+      {
+        "name": "Witch Hat",
+        "base_name": "Witch Hat",
+        "price_ton": 1.21,
+        "id": 14343,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/4UtabuQMzcEsufV04j_DFes1tqSXRKtjM7Zlsk0XPlk/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJEOGFCS0M0TnNuWU1xdGtDZlBRazJFVm5pZXluSlFwMVVnWlZ5eDFWbVI1TWwvYzg0MWI4Y2JmOTVmOGYxMw"
+      },
+      {
+        "name": "Desk Calendar",
+        "base_name": "Desk Calendar",
+        "price_ton": 1.21,
+        "id": 69000,
+        "class": "utility",
+        "image_url": "https://i.getgems.io/k7yy6E9U1za8pjl3CnnIoB77kbsYF0aCH1HCKFDL474/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJNY2ZNQVpsTVVyMVczWDhrZEV3M2ZKTVVBYVdINC1YY21FNVI1UmZGSVkwRTIvYzQwMzI1OGFjNjFkMjRmZQ"
+      },
+      {
+        "name": "Hex Pot",
+        "base_name": "Hex Pot",
+        "price_ton": 1.3,
+        "id": 29452,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/BiCfqgtfwhgv2eCeoAK9Tjrk2MTSqyxhLs8p58kRVyY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUI2QXRCUE91VHRRbWw4b1NBN1g4WnFKNVFtY09ZWXFvejkyc1FZWEdVUXJ4eUIvMDVkMWNhZDNhYzEzYWNhNg"
+      },
+      {
+        "name": "Lol Pop",
+        "base_name": "Lol Pop",
+        "price_ton": 1.3,
+        "id": 272857,
+        "class": "food",
+        "image_url": "https://i.getgems.io/rDcZtcQUHSIIZLIh_NACepi8EqfNmhjBM2uj9_hd0Ac/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUM2emppZDh2Sk5FV3FjWGsxMFhqc2RETFJLYmNQWnpiSHVzdUVXNkZva09XSW0vNzYwYmI1YTA5ZTA1MDk1MQ"
+      },
+      {
+        "name": "Candy Cane",
+        "base_name": "Candy Cane",
+        "price_ton": 1.31,
+        "id": 49894,
+        "class": "food",
+        "image_url": "https://i.getgems.io/xunzNglSSaVlHzZU9U3z2Lz5Bx2gZygKPZjvkOVuxBI/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUURMTTY1dDBzaFM3Z1pBZzBsTWx0R0hZaHNVOTRQenNNSkhoWWlibVJWN2tkVXMvMmYzYTdjNTk5NGMxNzU3MA"
+      },
+      {
+        "name": "Spiced Wine",
+        "base_name": "Spiced Wine",
+        "price_ton": 1.31,
+        "id": 64118,
+        "class": "drink",
+        "image_url": "https://i.getgems.io/zEBU4dItjVKC3HHRE-O47uXVZRrHKzCSNQYLCP4Uj1c/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUE4RENXeUNXeXl3Z09LWU9SZXJSb1NWZXZXclVRX0ZqS1FnTmloeFkxMjI3eDcvYTdjMmQxM2I2NjNmYTNhMQ"
+      },
+      {
+        "name": "B-Day Candle",
+        "base_name": "B-Day Candle",
+        "price_ton": 7.0,
+        "id": 188013,
+        "class": "celebration",
+        "image_url": "https://i.getgems.io/nMU5IxwSqlx2cnv-tko2i4fgz97mxxt3hpOXpBJxYRQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUN3RUZmVWJiUi0yMmZuM1ZneFVwQmlsN2J3QlFxRUhtN3dnUVliV1k5YzA4WUovZDI3ODA0MDg0ZmIyYzZhMw"
+      },
+      {
+        "name": "Tama Gadget",
+        "base_name": "Tama Gadget",
+        "price_ton": 12.0,
+        "id": 37448,
+        "class": "tech",
+        "image_url": "https://i.getgems.io/3p0M8ePo7C4ANHJNhfaQORiXHeqB_Yokk6sKuzdRUrc/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFfa3gyV095ZFhXellVWU8xRFA4MGFIbDR5aGxMR1loeGpQQXRSUE5qTWdmWU0vMzE4NmJiNWMwZDdkOGM2Yw"
+      },
+      {
+        "name": "Hypno Lollipop",
+        "base_name": "Hypno Lollipop",
+        "price_ton": 25.0,
+        "id": 39471,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/gL-5w1KCgON3UA5PdxSnUImw2gtuHkpqW7v2HzXVBUY/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUM2NVl5Nk4wNHZIb2VDSjB5bzRxbGw1ZXUtWmFXYlM1bnhzZGlseHltaG1TdXMvOTE1NzE2MzI0NGEzOGQ1Nw"
+      },
+      {
+        "name": "Eternal Rose",
+        "base_name": "Eternal Rose",
+        "price_ton": 19.8,
+        "id": 7836,
+        "class": "romantic",
+        "image_url": "https://i.getgems.io/yn-ywqS6d0NsjH4f4svNQ-X2B5BL8LoGIxBMKLF-oO0/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUR1bXkzYm5aWXpWNGJTV01TU1prbVhxeDUwWHVINWQ5UmxYX3lFaTJGTmxpdmsvYjJhMTQxYTY4MmJkNzcxMg"
+      },
+      {
+        "name": "Top Hat",
+        "base_name": "Top Hat",
+        "price_ton": 38.0,
+        "id": 30303,
+        "class": "accessory",
+        "image_url": "https://i.getgems.io/t66CfEjVPRu3H7gd8URf_0yuFbn8r6baogj4UhT5_pQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFEdkp4TXhDSEE3ZlJsWWpvY2VCT1JmN1J3S3MwcnpqVmFLZXBRQUNNblp6RzcvZmNiYTE1M2Y1Y2Q4ZGExNQ"
+      },
+      {
+        "name": "Love Potion",
+        "base_name": "Love Potion",
+        "price_ton": 20.0,
+        "id": 66666,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/zKpCtPCDvnuwHslDCP7f4OLRTZN2jXwuXhAn4fPaV2k/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUQ3eUR1MldDZ2Q5VXp4MWRGX0RRa1dLN0laSko0TXA5TTlnMXJHVVVpUUU0M20vMjkwZTEwMjU1ODBjZjY2Yg"
+      },
+      {
+        "name": "Lush Bouquet",
+        "base_name": "Lush Bouquet",
+        "price_ton": 50.0,
+        "id": 177893,
+        "class": "romantic",
+        "image_url": "https://i.getgems.io/zxOkg34S3HuKEllZej1R50Fu1195tYyM90OnLVSm4Js/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUEybEhjdlpXV19iTl8yTk1LcmtFVXY5eHo2Zng4d1RFNXVwYTh1MW5lWmI2aEovMDY4OWRhYjZhNWEzNWQzMw"
+      },
+      {
+        "name": "Genie Lamps",
+        "base_name": "Genie Lamps",
+        "price_ton": 65.0,
+        "id": 20202,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/nzMJkmZHnHzHGs3jqQbtiWecsNsdmXnKoLcHzj-92iw/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUN0MkMzeUNSTlgyNjdCM2w2aDFRc1U2YWdtNFpnVEFiN05wVkdpRktsQlhPQUEvOTZkYjY1MDYxNDc5MTdlZA"
+      },
+      {
+        "name": "Sharp Tongues",
+        "base_name": "Sharp Tongues",
+        "price_ton": 75.0,
+        "id": 44444,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/9EPlvwRPbi89sYi_am46mJG_l9NuvYsBRlDopgpw9-s/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJ3MnRPNVVhSjRjX1lYdDNJOHk1S0QwazM3c3RhWnhlZFYyTzVIbXJ5aUswZE4vZTlkMDUyMTRkY2UxZmEzMA"
+      },
+      {
+        "name": "Magic Potion",
+        "base_name": "Magic Potion",
+        "price_ton": 90.0,
+        "id": 77777,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/IcVEfdfbKTZS-VvC6nWSspjXGa-zMiki1dH_Bh8ylfo/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUF0RlU5R3JHZml4NFVHOURPaXZONThReHZnQkpVYUFaX3BkWkJaQ21iaEtvNFAvNWVkNTcwMjMxMDVjOTViYg"
+      },
+      {
+        "name": "Diamond Ring",
+        "base_name": "Diamond Ring",
+        "price_ton": 22.0,
+        "id": 56789,
+        "class": "jewelry",
+        "image_url": "https://i.getgems.io/WhPQGNYEfjlrFtpmNO1QXs1JSarUD7wXK5OJZOkif4E/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNXaDFsUGx0eVR3Q1d4Q1htNHVtTDV0UFpvWFI4a1RJY1QtcGQwSnFvYWRMSG8vZTkzM2VlMDBmNzRkZDViOQ"
+      },
+      {
+        "name": "Precious Peach",
+        "base_name": "Precious Peach",
+        "price_ton": 200.0,
+        "id": 33333,
+        "class": "mystic",
+        "image_url": "https://i.getgems.io/sYYc5J6dbJEvW1NVOj_76CSiPQDEeQZw_ca8z5oLc1w/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUE0aTU4aXVTOURVWVJ0VVo5N3NabzVtbmtiaVlVQnBXWFFPZTNkRVVDY1AxVzgvYTQ4OWNkZGUxNGFhODVkOA"
+      },
+      {
+        "name": "Astral Shard",
+        "base_name": "Astral Shard",
+        "price_ton": 300.0,
+        "id": 55555,
+        "class": "cosmic",
+        "image_url": "https://i.getgems.io/RrueixjTg2Q9l8Fo6ZcVLh6pfjVzmCtQ32EmADlRiCI/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUURJUmVsZU9rVHhDRDRnX1hFbTh4ajBMWU5nNi16TXNUR0FBd0NBLXZFYmtHQnUvOTNlZTY5N2E0ZmM2N2YxYQ"
+      }
+    ]
+  }
+  
