@@ -5,13 +5,11 @@ const GiftContext = createContext();
 
 const initialState = {
   gifts: [],
+  cases: [],
   myGifts: [],
-  receivedGifts: [],
+  balance: 1000, // Демо-баланс
   loading: false,
   error: null,
-  selectedGift: null,
-  balance: 1000, // Демо-баланс
-  transactions: [],
   categories: [],
   giftClasses: [],
   collectionStats: null,
@@ -28,78 +26,33 @@ const giftReducer = (state, action) => {
   switch (action.type) {
     case 'SET_LOADING':
       return { ...state, loading: action.payload };
-    
     case 'SET_ERROR':
       return { ...state, error: action.payload, loading: false };
-    
     case 'SET_GIFTS':
       return { ...state, gifts: action.payload, loading: false };
-    
-    case 'SET_CATEGORIES':
-      return { ...state, categories: action.payload };
-    
-    case 'SET_GIFT_CLASSES':
-      return { ...state, giftClasses: action.payload };
-    
-    case 'SET_COLLECTION_STATS':
-      return { ...state, collectionStats: action.payload };
-    
-    case 'SET_FILTERS':
-      return { ...state, filters: { ...state.filters, ...action.payload } };
-    
-    case 'SET_MY_GIFTS':
-      return { ...state, myGifts: action.payload, loading: false };
-    
-    case 'SET_RECEIVED_GIFTS':
-      return { ...state, receivedGifts: action.payload, loading: false };
-    
-    case 'SET_SELECTED_GIFT':
-      return { ...state, selectedGift: action.payload };
-    
-    case 'SET_BALANCE':
-      return { ...state, balance: action.payload };
-    
+    case 'SET_CASES':
+      return { ...state, cases: action.payload, loading: false };
     case 'ADD_GIFT':
       return { 
         ...state, 
-        gifts: [...state.gifts, action.payload],
+        myGifts: [...state.myGifts, action.payload], 
+        balance: state.balance - action.payload.price_ton, 
         loading: false 
       };
-    
-    case 'UPDATE_GIFT':
-      return {
-        ...state,
-        gifts: state.gifts.map(gift => 
-          gift.id === action.payload.id ? action.payload : gift
-        ),
-        loading: false
+    case 'SET_CATEGORIES':
+      return { ...state, categories: action.payload };
+    case 'SET_GIFT_CLASSES':
+      return { ...state, giftClasses: action.payload };
+    case 'SET_COLLECTION_STATS':
+      return { ...state, collectionStats: action.payload };
+    case 'SET_FILTERS':
+      return { ...state, filters: { ...state.filters, ...action.payload } };
+    case 'OPEN_CASE':
+      return { 
+        ...state, 
+        balance: state.balance - action.payload.casePrice,
+        loading: false 
       };
-    
-    case 'PURCHASE_GIFT':
-      return {
-        ...state,
-        myGifts: [...state.myGifts, action.payload],
-        balance: state.balance - action.payload.price_ton,
-        loading: false
-      };
-    
-    case 'SEND_GIFT':
-      return {
-        ...state,
-        myGifts: state.myGifts.filter(gift => gift.id !== action.payload.id),
-        loading: false
-      };
-    
-    case 'RECEIVE_GIFT':
-      return {
-        ...state,
-        receivedGifts: [...state.receivedGifts, action.payload],
-        loading: false
-      };
-    
-    case 'SET_TRANSACTIONS':
-      return { ...state, transactions: action.payload };
-    
     default:
       return state;
   }
@@ -108,64 +61,81 @@ const giftReducer = (state, action) => {
 export const GiftProvider = ({ children }) => {
   const [state, dispatch] = useReducer(giftReducer, initialState);
 
-  // Инициализация данных при загрузке
   useEffect(() => {
     const initializeData = async () => {
       try {
         dispatch({ type: 'SET_LOADING', payload: true });
         
-        // Загружаем все данные
+        // Загружаем подарки из оригинального data.json
         const gifts = localDataService.getAllGifts();
-        const categories = localDataService.getCategories();
-        const giftClasses = localDataService.getGiftClasses();
-        const collectionStats = localDataService.getCollectionStats();
-        
         dispatch({ type: 'SET_GIFTS', payload: gifts });
+        
+        // Загружаем кейсы из cases.json
+        const cases = localDataService.getAllCases();
+        dispatch({ type: 'SET_CASES', payload: cases });
+        
+        // Загружаем категории
+        const categories = localDataService.getCategories();
         dispatch({ type: 'SET_CATEGORIES', payload: categories });
+        
+        // Загружаем классы подарков
+        const giftClasses = localDataService.getGiftClasses();
         dispatch({ type: 'SET_GIFT_CLASSES', payload: giftClasses });
+        
+        // Загружаем статистику коллекции
+        const collectionStats = localDataService.getCollectionStats();
         dispatch({ type: 'SET_COLLECTION_STATS', payload: collectionStats });
         
       } catch (error) {
-        console.error('Error initializing data:', error);
-        dispatch({ type: 'SET_ERROR', payload: 'Ошибка загрузки данных' });
+        dispatch({ type: 'SET_ERROR', payload: error.message });
       }
     };
 
     initializeData();
   }, []);
 
-  // Функция для фильтрации подарков
-  const getFilteredGifts = () => {
-    return localDataService.filterGifts(state.filters);
+  const purchaseGift = (gift) => {
+    if (state.balance >= gift.price_ton) {
+      dispatch({ type: 'ADD_GIFT', payload: gift });
+    }
   };
 
-  // Функция для поиска подарков
-  const searchGifts = (query) => {
-    return localDataService.searchGifts(query);
+  const openCase = (caseData) => {
+    if (state.balance >= caseData.price) {
+      dispatch({ type: 'OPEN_CASE', payload: { casePrice: caseData.price } });
+      
+      // Получаем подарки из кейса
+      const caseGifts = localDataService.getGiftsForCase(caseData.id);
+      
+      // Случайно выбираем подарок из кейса
+      const randomGift = caseGifts[Math.floor(Math.random() * caseGifts.length)];
+      
+      if (randomGift) {
+        dispatch({ type: 'ADD_GIFT', payload: randomGift });
+      }
+    }
   };
+
+  const getFilteredGifts = () => localDataService.filterGifts(state.filters);
+  const searchGifts = (query) => localDataService.searchGifts(query);
+  const getGiftById = localDataService.getGiftById;
+  const getGiftsByCategory = localDataService.getGiftsByCategory;
+  const getGiftsByClass = localDataService.getGiftsByClass;
+  const getCaseById = localDataService.getCaseById;
+  const getGiftsForCase = localDataService.getGiftsForCase;
 
   const value = {
     ...state,
-    dispatch,
-    setLoading: (loading) => dispatch({ type: 'SET_LOADING', payload: loading }),
-    setError: (error) => dispatch({ type: 'SET_ERROR', payload: error }),
-    setGifts: (gifts) => dispatch({ type: 'SET_GIFTS', payload: gifts }),
-    setMyGifts: (gifts) => dispatch({ type: 'SET_MY_GIFTS', payload: gifts }),
-    setReceivedGifts: (gifts) => dispatch({ type: 'SET_RECEIVED_GIFTS', payload: gifts }),
-    setSelectedGift: (gift) => dispatch({ type: 'SET_SELECTED_GIFT', payload: gift }),
-    setBalance: (balance) => dispatch({ type: 'SET_BALANCE', payload: balance }),
+    purchaseGift,
+    openCase,
     setFilters: (filters) => dispatch({ type: 'SET_FILTERS', payload: filters }),
-    addGift: (gift) => dispatch({ type: 'ADD_GIFT', payload: gift }),
-    updateGift: (gift) => dispatch({ type: 'UPDATE_GIFT', payload: gift }),
-    purchaseGift: (gift) => dispatch({ type: 'PURCHASE_GIFT', payload: gift }),
-    sendGift: (gift) => dispatch({ type: 'SEND_GIFT', payload: gift }),
-    receiveGift: (gift) => dispatch({ type: 'RECEIVE_GIFT', payload: gift }),
-    setTransactions: (transactions) => dispatch({ type: 'SET_TRANSACTIONS', payload: transactions }),
     getFilteredGifts,
     searchGifts,
-    getGiftById: localDataService.getGiftById,
-    getGiftsByCategory: localDataService.getGiftsByCategory,
-    getGiftsByClass: localDataService.getGiftsByClass,
+    getGiftById,
+    getGiftsByCategory,
+    getGiftsByClass,
+    getCaseById,
+    getGiftsForCase,
   };
 
   return (

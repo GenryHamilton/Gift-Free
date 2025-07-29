@@ -1,0 +1,251 @@
+{
+  "cases": [
+    {
+      "id": 1,
+      "name": "Mystic Case",
+      "description": "Мистические подарки с магической энергией",
+      "price": 5.0,
+      "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
+      "rarity": "rare",
+      "gifts": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": 2,
+      "name": "Food & Drinks Case",
+      "description": "Вкусные подарки для гурманов",
+      "price": 3.0,
+      "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
+      "rarity": "common",
+      "gifts": [6, 7, 8, 9, 10]
+    },
+    {
+      "id": 3,
+      "name": "Tech & Gadgets Case",
+      "description": "Технологичные подарки для IT-энтузиастов",
+      "price": 7.5,
+      "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
+      "rarity": "epic",
+      "gifts": [11, 12, 13, 14, 15]
+    },
+    {
+      "id": 4,
+      "name": "Romantic Case",
+      "description": "Романтические подарки для влюбленных",
+      "price": 4.0,
+      "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
+      "rarity": "rare",
+      "gifts": [16, 17, 18, 19, 20]
+    },
+    {
+      "id": 5,
+      "name": "Cosmic Case",
+      "description": "Космические подарки из далеких галактик",
+      "price": 10.0,
+      "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
+      "rarity": "legendary",
+      "gifts": [21, 22, 23, 24, 25]
+    }
+  ],
+  "case_gifts": [
+    {
+      "name": "Mystic Crystal",
+      "base_name": "Mystic Crystal",
+      "price_ton": 2.5,
+      "id": 1,
+      "class": "mystic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Magic Wand",
+      "base_name": "Magic Wand",
+      "price_ton": 3.0,
+      "id": 2,
+      "class": "mystic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Crystal Ball",
+      "base_name": "Crystal Ball",
+      "price_ton": 4.0,
+      "id": 3,
+      "class": "mystic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Spell Book",
+      "base_name": "Spell Book",
+      "price_ton": 2.0,
+      "id": 4,
+      "class": "mystic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Mystic Amulet",
+      "base_name": "Mystic Amulet",
+      "price_ton": 3.5,
+      "id": 5,
+      "class": "mystic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Whip Cupcake",
+      "base_name": "Whip Cupcake",
+      "price_ton": 1.0,
+      "id": 6,
+      "class": "food",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Chocolate Cake",
+      "base_name": "Chocolate Cake",
+      "price_ton": 1.5,
+      "id": 7,
+      "class": "food",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Pizza Slice",
+      "base_name": "Pizza Slice",
+      "price_ton": 0.8,
+      "id": 8,
+      "class": "food",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Ice Cream",
+      "base_name": "Ice Cream",
+      "price_ton": 1.2,
+      "id": 9,
+      "class": "food",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Sushi Roll",
+      "base_name": "Sushi Roll",
+      "price_ton": 2.0,
+      "id": 10,
+      "class": "food",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Coffee Cup",
+      "base_name": "Coffee Cup",
+      "price_ton": 0.5,
+      "id": 11,
+      "class": "drink",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Tea Pot",
+      "base_name": "Tea Pot",
+      "price_ton": 0.8,
+      "id": 12,
+      "class": "drink",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Wine Bottle",
+      "base_name": "Wine Bottle",
+      "price_ton": 3.0,
+      "id": 13,
+      "class": "drink",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Cocktail Glass",
+      "base_name": "Cocktail Glass",
+      "price_ton": 2.5,
+      "id": 14,
+      "class": "drink",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Juice Box",
+      "base_name": "Juice Box",
+      "price_ton": 0.6,
+      "id": 15,
+      "class": "drink",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Rose Bouquet",
+      "base_name": "Rose Bouquet",
+      "price_ton": 4.0,
+      "id": 16,
+      "class": "romantic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Heart Necklace",
+      "base_name": "Heart Necklace",
+      "price_ton": 6.0,
+      "id": 17,
+      "class": "romantic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Chocolate Box",
+      "base_name": "Chocolate Box",
+      "price_ton": 2.5,
+      "id": 18,
+      "class": "romantic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Love Letter",
+      "base_name": "Love Letter",
+      "price_ton": 1.0,
+      "id": 19,
+      "class": "romantic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Candle Light",
+      "base_name": "Candle Light",
+      "price_ton": 1.5,
+      "id": 20,
+      "class": "romantic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Galaxy Star",
+      "base_name": "Galaxy Star",
+      "price_ton": 8.0,
+      "id": 21,
+      "class": "cosmic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Black Hole",
+      "base_name": "Black Hole",
+      "price_ton": 15.0,
+      "id": 22,
+      "class": "cosmic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Nebula Cloud",
+      "base_name": "Nebula Cloud",
+      "price_ton": 6.0,
+      "id": 23,
+      "class": "cosmic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Comet Trail",
+      "base_name": "Comet Trail",
+      "price_ton": 4.5,
+      "id": 24,
+      "class": "cosmic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    },
+    {
+      "name": "Solar System",
+      "base_name": "Solar System",
+      "price_ton": 20.0,
+      "id": 25,
+      "class": "cosmic",
+      "image_url": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw"
+    }
+  ]
+} 

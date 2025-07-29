@@ -3,49 +3,35 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Filter, Gift, Sparkles, Heart, Star, Coins, Crown, X, Plus, ArrowUpRight } from 'lucide-react';
 import { useTelegram } from '../hooks/useTelegram';
 import { useGift } from '../contexts/GiftContext';
-import GiftCard from '../components/GiftCard';
+import CaseCard from '../components/CaseCard';
+import CaseModal from '../components/CaseModal';
 import tonSymbol from '../assets/ton_symbol.svg';
 
 const HomePage = () => {
   const { user, hapticFeedback, showAlert } = useTelegram();
   const { 
-    gifts, 
+    cases, 
     balance, 
     loading, 
-    categories, 
-    giftClasses, 
-    collectionStats,
-    filters,
-    setFilters,
-    getFilteredGifts,
-    searchGifts,
-    purchaseGift 
+    openCase 
   } = useGift();
   
-  const [searchTerm, setSearchTerm] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
   const [showBalanceModal, setShowBalanceModal] = useState(false);
+  const [showCaseModal, setShowCaseModal] = useState(false);
+  const [selectedCase, setSelectedCase] = useState(null);
 
-  const sortOptions = [
-    { id: 'name', name: 'По названию' },
-    { id: 'price_low', name: 'Дешевые' },
-    { id: 'price_high', name: 'Дорогие' },
-    { id: 'class', name: 'По классу' },
-  ];
-
-  const handleGiftClick = (gift) => {
-    hapticFeedback('light');
-    showAlert(`Подарок "${gift.name}" стоит ${gift.price_ton} SHAKE`);
+  const handleCaseClick = (caseData) => {
+    hapticFeedback('medium');
+    setSelectedCase(caseData);
+    setShowCaseModal(true);
   };
 
-  const handlePurchase = (gift) => {
+  const handleOpenCase = (caseData) => {
     hapticFeedback('medium');
-    if (balance >= gift.price_ton) {
-      purchaseGift(gift);
-      showAlert(`Подарок "${gift.name}" куплен за ${gift.price_ton} SHAKE! 🎉`);
-    } else {
-      showAlert('Недостаточно средств для покупки! 💸');
-    }
+    openCase(caseData);
+    showAlert(`Кейс "${caseData.name}" открыт! 🎉 Получен подарок!`);
+    setShowCaseModal(false);
+    setSelectedCase(null);
   };
 
   const handleBalanceClick = () => {
@@ -65,31 +51,6 @@ const HomePage = () => {
     setShowBalanceModal(false);
   };
 
-  const handleCategoryChange = (category) => {
-    setFilters({ category });
-    hapticFeedback('light');
-  };
-
-  const handleClassChange = (giftClass) => {
-    setFilters({ class: giftClass });
-    hapticFeedback('light');
-  };
-
-  const handleSortChange = (sortBy) => {
-    setFilters({ sortBy });
-    hapticFeedback('light');
-  };
-
-  const handleSearch = (query) => {
-    setSearchTerm(query);
-    hapticFeedback('light');
-  };
-
-  // Получаем отфильтрованные подарки
-  const filteredGifts = searchTerm 
-    ? searchGifts(searchTerm)
-    : getFilteredGifts();
-
   return (
     <div className="min-h-screen bg-gray-900 text-telegram-text">
       {/* Fixed Header */}
@@ -106,6 +67,9 @@ const HomePage = () => {
               <div>
                 <p className="text-white text-sm font-medium">
                   {user?.first_name || 'Пользователь'}
+                </p>
+                <p className="text-gray-400 text-xs">
+                  Telegram
                 </p>
               </div>
             </div>
@@ -130,112 +94,16 @@ const HomePage = () => {
 
       {/* Main Content with Top Padding */}
       <div className="pt-20">
-        {/* Search and Filters */}
-        <div className="px-4 py-4 bg-gray-900">
-          {/* Search */}
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Поиск подарков..."
-              value={searchTerm}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-gray-800 rounded-xl text-white placeholder-gray-400 border border-gray-700 focus:border-telegram-accent focus:outline-none"
-            />
-          </div>
-
-          {/* Filter Toggle */}
-          <div className="flex items-center justify-between mb-4">
-            <button
-              onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-lg text-white hover:bg-gray-700 transition-colors"
-            >
-              <Filter className="w-4 h-4" />
-              <span>Фильтры</span>
-            </button>
-
-            <select
-              value={filters.sortBy}
-              onChange={(e) => handleSortChange(e.target.value)}
-              className="px-3 py-2 bg-gray-800 rounded-lg text-white border border-gray-700 focus:border-telegram-accent focus:outline-none"
-            >
-              {sortOptions.map(option => (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Filters Panel */}
-          {showFilters && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="bg-gray-800 rounded-xl p-4 mb-4"
-            >
-              {/* Categories */}
-              <div className="mb-4">
-                <h3 className="text-sm font-medium text-white mb-2">Категории</h3>
-                <div className="flex flex-wrap gap-2">
-                  {categories.map(category => (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategoryChange(category.id)}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                        filters.category === category.id
-                          ? 'bg-telegram-accent text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      }`}
-                    >
-                      {category.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Classes */}
-              <div>
-                <h3 className="text-sm font-medium text-white mb-2">Классы подарков</h3>
-                <div className="flex flex-wrap gap-2">
-                  {giftClasses.map(giftClass => (
-                    <button
-                      key={giftClass.id}
-                      onClick={() => handleClassChange(giftClass.id)}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-colors flex items-center gap-1 ${
-                        filters.class === giftClass.id
-                          ? 'bg-telegram-accent text-white'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      }`}
-                    >
-                      <span>{giftClass.icon}</span>
-                      <span>{giftClass.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Results Info */}
-          <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
-            <span>Найдено: {filteredGifts.length} подарков</span>
-            {collectionStats && (
-              <span>Всего: {collectionStats.totalItems}</span>
-            )}
-          </div>
-        </div>
-
-        {/* Gifts Grid */}
+        {/* Cases Grid */}
         <div className="px-4 pb-20">
           {loading ? (
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-gray-800 rounded-2xl p-4 animate-pulse">
-                  <div className="w-16 h-16 bg-gray-700 rounded-full mx-auto mb-3" />
-                  <div className="h-4 bg-gray-700 rounded mb-2" />
-                  <div className="h-3 bg-gray-700 rounded w-3/4 mx-auto" />
+                <div key={i} className="bg-gray-800 rounded-2xl overflow-hidden animate-pulse">
+                  <div className="h-40 bg-gray-700" />
+                  <div className="p-4">
+                    <div className="h-6 bg-gray-700 rounded" />
+                  </div>
                 </div>
               ))}
             </div>
@@ -243,19 +111,19 @@ const HomePage = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
             >
-              {filteredGifts.map((gift, index) => (
+              {cases.map((caseData, index) => (
                 <motion.div
-                  key={gift.id}
+                  key={caseData.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <GiftCard
-                    gift={gift}
-                    onClick={() => handleGiftClick(gift)}
-                    onPurchase={() => handlePurchase(gift)}
+                  <CaseCard
+                    caseData={caseData}
+                    onClick={() => handleCaseClick(caseData)}
+                    isLocked={balance < caseData.price}
                   />
                 </motion.div>
               ))}
@@ -263,19 +131,33 @@ const HomePage = () => {
           )}
 
           {/* Empty State */}
-          {!loading && filteredGifts.length === 0 && (
+          {!loading && cases.length === 0 && (
             <div className="text-center py-12">
               <Gift className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-white mb-2">
-                Подарки не найдены
+                Кейсы не найдены
               </h3>
               <p className="text-gray-400">
-                Попробуйте изменить фильтры или поисковый запрос
+                Попробуйте обновить страницу
               </p>
             </div>
           )}
         </div>
       </div>
+
+      {/* Case Modal */}
+      {showCaseModal && (
+        <CaseModal
+          isOpen={showCaseModal}
+          onClose={() => {
+            setShowCaseModal(false);
+            setSelectedCase(null);
+          }}
+          caseData={selectedCase}
+          onOpenCase={handleOpenCase}
+          balance={balance}
+        />
+      )}
 
       {/* Balance Modal */}
       <AnimatePresence>
