@@ -100,7 +100,7 @@ const CaseModal = ({
                     </motion.div>
                   ) : selectedGift ? (
                     <div className="text-center">
-                      <div className="w-16 h-16 mx-auto mb-2">
+                      <div className="w-24 h-24 mx-auto mb-3">
                         <img 
                           src={selectedGift.image_url} 
                           alt={selectedGift.name}
@@ -144,10 +144,10 @@ const CaseModal = ({
             {/* Possible Gifts List */}
             <div>
               <h3 className="text-white font-medium mb-3">Возможные подарки:</h3>
-              <div className="grid grid-cols-3 gap-2 max-h-32 overflow-y-auto">
+              <div className="grid grid-cols-3 gap-3 max-h-40 overflow-y-auto">
                 {caseGifts.map((gift, index) => (
-                  <div key={index} className="bg-gray-700 rounded-lg p-2 text-center">
-                    <div className="w-8 h-8 mx-auto mb-1">
+                  <div key={index} className="bg-gray-700 rounded-lg p-3 text-center">
+                    <div className="w-12 h-12 mx-auto mb-2">
                       <img 
                         src={gift.image_url} 
                         alt={gift.name}

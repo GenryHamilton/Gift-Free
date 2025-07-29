@@ -4,6 +4,9 @@ import { Gift } from 'lucide-react';
 import tonSymbol from '../assets/ton_symbol.svg';
 import case1Image from '../assets/download_9.774666666666352.svg';
 import case2Image from '../assets/download_88.43400000000005.svg';
+import case3Image from '../assets/download_57.33066666666414.svg';
+import case4Image from '../assets/download_36.907333333340155.svg';
+import case5Image from '../assets/download_91.54466666666659.svg';
 import { localDataService } from '../services/localData';
 
 const CaseCard = ({ 
@@ -18,6 +21,12 @@ const CaseCard = ({
         return case1Image;
       case 2:
         return case2Image;
+      case 3:
+        return case3Image;
+      case 4:
+        return case4Image; // Романтическое превью для Romantic Case
+      case 5:
+        return case5Image; // Космическое превью для Cosmic Case
       default:
         return case1Image; // fallback to first image
     }
