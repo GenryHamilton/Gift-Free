@@ -22,6 +22,8 @@ export default defineConfig({
   resolve: {
     alias: {
       crypto: 'crypto-browserify',
+      buffer: 'buffer',
+      process: 'process/browser',
     },
   },
   server: {
@@ -36,6 +38,12 @@ export default defineConfig({
     include: ['react', 'react-dom', 'react-router-dom']
   },
   define: {
-    global: 'globalThis'
+    global: 'globalThis',
+    'process.env': {}
+  },
+  esbuild: {
+    define: {
+      global: 'globalThis'
+    }
   }
 })
