@@ -6,78 +6,35 @@
 [vite:build-html] crypto.hash is not a function
 ```
 
-## Причина
-Vite пытался использовать Node.js crypto модуль в браузерной среде, где он недоступен.
+## Решение - Обновление версий
 
-## Решение
-
-### 1. Установлены полифилы
+### 1. Обновлен Vite до версии 5.4.8
 ```bash
-npm install --save-dev crypto-browserify buffer process vite-plugin-node-polyfills
+npm install vite@latest
 ```
 
-### 2. Обновлена конфигурация Vite (`vite.config.js`)
-Добавлены алиасы для полифилов и отключено хеширование файлов:
-```javascript
-plugins: [
-  react(),
-  nodePolyfills({
-    include: ['crypto', 'buffer', 'process']
-  })
-],
-resolve: {
-  alias: {
-    crypto: 'crypto-browserify',
-    buffer: 'buffer',
-    process: 'process/browser',
-  },
-},
-build: {
-  rollupOptions: {
-    output: {
-      entryFileNames: 'assets/[name].js',
-      chunkFileNames: 'assets/[name].js',
-      assetFileNames: 'assets/[name].[ext]'
-    }
-  }
-}
-```
+### 2. Обновлен Node.js до версии 20.9.0
+Обновлены файлы:
+- `package.json`: `"node": "20.9.0"`
+- `netlify.toml`: `NODE_VERSION = "20.9.0"`
 
-### 3. Добавлены глобальные определения
-```javascript
-define: {
-  global: 'globalThis',
-  'process.env': {},
-  'process.browser': true
-},
-esbuild: {
-  define: {
-    global: 'globalThis'
-  }
-}
-```
+### 3. Упрощена конфигурация Vite
+Убраны лишние полифилы и упрощена конфигурация, так как в новых версиях проблемы с crypto решены.
 
-### 4. Создан кастомный полифил
-Создан файл `src/crypto-polyfill.js` с простой реализацией crypto.hash для процесса сборки.
-
-### 5. Обновлен index.html
-Добавлена загрузка полифила перед основным скриптом:
-```html
-<script type="module" src="/src/crypto-polyfill.js"></script>
-<script type="module" src="/src/main.jsx"></script>
-```
+### 4. Удалены ненужные файлы
+- Удален `src/crypto-polyfill.js`
+- Убрана ссылка на полифил из `index.html`
 
 ## Результат
-- ✅ Сборка проходит успешно локально
-- ✅ Отключено хеширование файлов (решает проблему с crypto.hash)
-- ✅ Все полифилы установлены и настроены
-- ✅ Добавлен кастомный полифил для crypto
+- ✅ Сборка проходит успешно с Vite 5.4.8
+- ✅ Используется Node.js 20.9.0
+- ✅ Упрощена конфигурация
 - ✅ Готово к деплою на Netlify
 
 ## Ключевые изменения
-1. **Отключение хеширования**: Файлы теперь именуются без хешей (`index.js` вместо `index-DMH9bzcg.js`)
-2. **Плагин полифилов**: Использование `vite-plugin-node-polyfills`
-3. **Кастомный полифил**: Простая реализация crypto.hash для процесса сборки
+1. **Vite 5.4.8**: Новая версия с исправленными проблемами crypto
+2. **Node.js 20.9.0**: Более стабильная версия для сборки
+3. **Упрощенная конфигурация**: Убраны лишние полифилы и настройки
 
 ## Дата исправления
 $(date) 
