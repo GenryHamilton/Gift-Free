@@ -19,6 +19,11 @@ export default defineConfig({
       }
     }
   },
+  resolve: {
+    alias: {
+      crypto: 'crypto-browserify',
+    },
+  },
   server: {
     port: 5173,
     host: true
