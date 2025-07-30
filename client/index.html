@@ -6,29 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#17212b" />
     <meta name="description" content="Telegram Gifts - Дари подарки в Telegram" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Telegram Gifts</title>
+    
+    <!-- Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-      // Инициализация Telegram Web App
-      document.addEventListener('DOMContentLoaded', function() {
-        if (window.Telegram && window.Telegram.WebApp) {
-          const WebApp = window.Telegram.WebApp;
-          WebApp.ready();
-          WebApp.expand();
-          WebApp.setHeaderColor('#17212b');
-          WebApp.setBackgroundColor('#17212b');
-          console.log('Telegram Web App initialized in HTML');
-        }
-      });
-    </script>
+    
     <style>
-      body {
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background-color: #17212b;
         color: #ffffff;
         overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       
       #root {
@@ -45,24 +44,69 @@
       /* Анимация загрузки */
       .loading {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         background-color: #17212b;
+        gap: 20px;
       }
       
       .spinner {
-        border: 2px solid #242f3d;
-        border-top: 2px solid #2481cc;
+        border: 3px solid #242f3d;
+        border-top: 3px solid #2481cc;
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         animation: spin 1s linear infinite;
+      }
+      
+      .loading-text {
+        color: #ffffff;
+        font-size: 16px;
+        text-align: center;
+      }
+      
+      .loading-debug {
+        color: #888888;
+        font-size: 12px;
+        text-align: center;
+        margin-top: 10px;
       }
       
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
+      }
+      
+      /* Ошибка загрузки */
+      .error {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #17212b;
+        gap: 20px;
+        padding: 20px;
+      }
+      
+      .error-icon {
+        font-size: 48px;
+        color: #ff4444;
+      }
+      
+      .error-text {
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+      }
+      
+      .error-details {
+        color: #888888;
+        font-size: 14px;
+        text-align: center;
+        max-width: 300px;
       }
     </style>
   </head>
@@ -70,8 +114,73 @@
     <div id="root">
       <div class="loading">
         <div class="spinner"></div>
+        <div class="loading-text">Загрузка приложения...</div>
+        <div class="loading-debug" id="loading-debug">Инициализация...</div>
       </div>
     </div>
+    
+    <script>
+      // Простая инициализация Telegram Web App
+      function initTelegramWebApp() {
+        const debugElement = document.getElementById('loading-debug');
+        
+        try {
+          debugElement.textContent = 'Проверка Telegram Web App...';
+          
+          if (window.Telegram && window.Telegram.WebApp) {
+            const WebApp = window.Telegram.WebApp;
+            
+            debugElement.textContent = 'Telegram Web App найден, инициализация...';
+            
+            // Инициализируем Web App
+            WebApp.ready();
+            WebApp.expand();
+            
+            // Устанавливаем цвета
+            WebApp.setHeaderColor('#17212b');
+            WebApp.setBackgroundColor('#17212b');
+            
+            debugElement.textContent = 'Telegram Web App инициализирован успешно!';
+            console.log('Telegram Web App initialized successfully');
+            
+            return true;
+          } else {
+            debugElement.textContent = 'Telegram Web App не найден (работаем в браузере)';
+            console.log('Telegram Web App not found, running in browser');
+            return false;
+          }
+        } catch (error) {
+          debugElement.textContent = 'Ошибка инициализации: ' + error.message;
+          console.error('Error initializing Telegram Web App:', error);
+          return false;
+        }
+      }
+      
+      // Инициализируем при загрузке DOM
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, initializing...');
+        initTelegramWebApp();
+      });
+      
+      // Обработка ошибок
+      window.addEventListener('error', function(e) {
+        console.error('Global error:', e.error);
+        const debugElement = document.getElementById('loading-debug');
+        if (debugElement) {
+          debugElement.textContent = 'Ошибка: ' + e.error.message;
+        }
+      });
+      
+      // Обработка необработанных промисов
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled promise rejection:', e.reason);
+        const debugElement = document.getElementById('loading-debug');
+        if (debugElement) {
+          debugElement.textContent = 'Ошибка промиса: ' + e.reason;
+        }
+      });
+    </script>
+    
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
