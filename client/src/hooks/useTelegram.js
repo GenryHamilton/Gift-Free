@@ -39,13 +39,17 @@ const createMockWebApp = () => ({
 
 // Получение WebApp объекта
 const getWebApp = () => {
+  console.log('Getting WebApp object...');
+  
   // Сначала пробуем получить из window.Telegram.WebApp
   if (window.Telegram && window.Telegram.WebApp) {
+    console.log('Found Telegram WebApp in window.Telegram.WebApp');
     return window.Telegram.WebApp;
   }
   
   // Затем пробуем импортировать SDK
   try {
+    console.log('Trying to import @twa-dev/sdk...');
     return require('@twa-dev/sdk').default;
   } catch (error) {
     console.log('Telegram Web App SDK not available, using mock');
@@ -60,26 +64,42 @@ export const useTelegram = () => {
   const [webApp, setWebApp] = useState(null);
 
   useEffect(() => {
+    console.log('useTelegram: Initializing...');
+    
     try {
       const WebApp = getWebApp();
       setWebApp(WebApp);
+      console.log('WebApp object:', WebApp);
 
       // Получаем данные пользователя
       if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+        console.log('User data found:', WebApp.initDataUnsafe.user);
         setUser(WebApp.initDataUnsafe.user);
+      } else {
+        console.log('No user data found, using default');
+        setUser({
+          id: 123456789,
+          first_name: 'Test',
+          last_name: 'User',
+          username: 'testuser'
+        });
       }
       
       // Настройка темы
+      console.log('Setting up WebApp...');
       WebApp.ready();
       WebApp.expand();
       
       // Установка темы
       const colorScheme = WebApp.colorScheme;
+      console.log('Color scheme:', colorScheme);
       setTheme(colorScheme);
       
       // Установка цветов в соответствии с темой Telegram
       WebApp.setHeaderColor('#17212b');
       WebApp.setBackgroundColor('#17212b');
+      
+      console.log('Telegram Web App initialized successfully');
         
     } catch (error) {
       console.error('Error initializing Telegram Web App:', error);
@@ -93,6 +113,7 @@ export const useTelegram = () => {
     }
     
     setIsLoading(false);
+    console.log('useTelegram: Initialization completed');
   }, []);
 
   const showAlert = (message) => {

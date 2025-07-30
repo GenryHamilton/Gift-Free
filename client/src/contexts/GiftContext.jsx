@@ -8,7 +8,7 @@ const initialState = {
   cases: [],
   myGifts: [],
   balance: 1000, // Демо-баланс
-  loading: false,
+  loading: true, // Изменено на true по умолчанию
   error: null,
   categories: [],
   giftClasses: [],
@@ -64,34 +64,53 @@ export const GiftProvider = ({ children }) => {
   useEffect(() => {
     const initializeData = async () => {
       try {
+        console.log('Starting data initialization...');
         dispatch({ type: 'SET_LOADING', payload: true });
         
         // Загружаем подарки из оригинального data.json
+        console.log('Loading gifts...');
         const gifts = localDataService.getAllGifts();
+        console.log('Gifts loaded:', gifts.length);
         dispatch({ type: 'SET_GIFTS', payload: gifts });
         
         // Загружаем кейсы из cases.json
+        console.log('Loading cases...');
         const cases = localDataService.getAllCases();
+        console.log('Cases loaded:', cases.length);
         dispatch({ type: 'SET_CASES', payload: cases });
         
         // Загружаем категории
+        console.log('Loading categories...');
         const categories = localDataService.getCategories();
+        console.log('Categories loaded:', categories.length);
         dispatch({ type: 'SET_CATEGORIES', payload: categories });
         
         // Загружаем классы подарков
+        console.log('Loading gift classes...');
         const giftClasses = localDataService.getGiftClasses();
+        console.log('Gift classes loaded:', giftClasses.length);
         dispatch({ type: 'SET_GIFT_CLASSES', payload: giftClasses });
         
         // Загружаем статистику коллекции
+        console.log('Loading collection stats...');
         const collectionStats = localDataService.getCollectionStats();
+        console.log('Collection stats loaded:', collectionStats);
         dispatch({ type: 'SET_COLLECTION_STATS', payload: collectionStats });
         
+        console.log('Data initialization completed successfully');
+        
       } catch (error) {
+        console.error('Error initializing data:', error);
         dispatch({ type: 'SET_ERROR', payload: error.message });
       }
     };
 
-    initializeData();
+    // Добавляем небольшую задержку для стабилизации
+    const timer = setTimeout(() => {
+      initializeData();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const purchaseGift = (gift) => {

@@ -5,20 +5,31 @@ import { useTelegram } from '../hooks/useTelegram';
 import { useGift } from '../contexts/GiftContext';
 import CaseCard from '../components/CaseCard';
 import CaseModal from '../components/CaseModal';
+import LoadingDebug from '../components/LoadingDebug';
 import tonSymbol from '../assets/ton_symbol.svg';
 
 const HomePage = () => {
-  const { user, hapticFeedback, showAlert } = useTelegram();
+  const { user, hapticFeedback, showAlert, isLoading: telegramLoading } = useTelegram();
   const { 
     cases, 
     balance, 
-    loading, 
+    loading: giftLoading, 
     openCase 
   } = useGift();
   
   const [showBalanceModal, setShowBalanceModal] = useState(false);
   const [showCaseModal, setShowCaseModal] = useState(false);
   const [selectedCase, setSelectedCase] = useState(null);
+
+  // Отладочная информация
+  useEffect(() => {
+    console.log('HomePage: Component mounted');
+    console.log('Telegram loading:', telegramLoading);
+    console.log('Gift loading:', giftLoading);
+    console.log('User:', user);
+    console.log('Cases:', cases);
+    console.log('Balance:', balance);
+  }, [telegramLoading, giftLoading, user, cases, balance]);
 
   const handleCaseClick = (caseData) => {
     hapticFeedback('medium');
@@ -51,8 +62,20 @@ const HomePage = () => {
     setShowBalanceModal(false);
   };
 
+  // Показываем загрузку только если загружаются данные подарков
+  const isLoading = giftLoading;
+
   return (
     <div className="min-h-screen bg-gray-900 text-telegram-text">
+      {/* Debug Info */}
+      <LoadingDebug 
+        telegramLoading={telegramLoading}
+        giftLoading={giftLoading}
+        user={user}
+        cases={cases}
+        balance={balance}
+      />
+
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-gray-800 border-b border-gray-700">
         <div className="px-4 py-3">
@@ -96,68 +119,26 @@ const HomePage = () => {
       <div className="pt-20">
         {/* Cases Grid */}
       <div className="px-4 pb-20">
-        {loading ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-gray-800 rounded-2xl overflow-hidden animate-pulse">
-                  <div className="h-40 bg-gray-700" />
-                  <div className="p-4">
-                    <div className="h-6 bg-gray-700 rounded" />
-                  </div>
-              </div>
-            ))}
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center min-h-[50vh]">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-telegram-accent"></div>
+            <p className="text-gray-400 mt-4">Загрузка кейсов...</p>
+            <p className="text-gray-500 text-sm mt-2">Debug: Telegram loading: {telegramLoading ? 'true' : 'false'}</p>
+            <p className="text-gray-500 text-sm">Debug: Gift loading: {giftLoading ? 'true' : 'false'}</p>
           </div>
         ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-              className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-          >
-              {cases.map((caseData, index) => (
-              <motion.div
-                  key={caseData.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                  <CaseCard
-                    caseData={caseData}
-                    onClick={() => handleCaseClick(caseData)}
-                    isLocked={balance < caseData.price}
-                />
-              </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {cases.map((caseData) => (
+              <CaseCard
+                key={caseData.id}
+                caseData={caseData}
+                onClick={() => handleCaseClick(caseData)}
+              />
             ))}
-          </motion.div>
+          </div>
         )}
-
-          {/* Empty State */}
-          {!loading && cases.length === 0 && (
-            <div className="text-center py-12">
-              <Gift className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">
-                Кейсы не найдены
-              </h3>
-              <p className="text-gray-400">
-                Попробуйте обновить страницу
-              </p>
-            </div>
-          )}
-        </div>
       </div>
-
-      {/* Case Modal */}
-      {showCaseModal && (
-        <CaseModal
-          isOpen={showCaseModal}
-          onClose={() => {
-            setShowCaseModal(false);
-            setSelectedCase(null);
-          }}
-          caseData={selectedCase}
-          onOpenCase={handleOpenCase}
-          balance={balance}
-        />
-      )}
+      </div>
 
       {/* Balance Modal */}
       <AnimatePresence>
@@ -166,66 +147,70 @@ const HomePage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
             onClick={() => setShowBalanceModal(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-800 rounded-lg p-6 w-80 max-w-sm"
               onClick={(e) => e.stopPropagation()}
-              className="bg-gray-800 rounded-2xl p-6 w-full max-w-md"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-white">Баланс</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white text-lg font-semibold">Баланс</h3>
                 <button
                   onClick={() => setShowBalanceModal(false)}
-                  className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                  className="text-gray-400 hover:text-white"
                 >
-                  <X className="w-5 h-5 text-gray-400" />
+                  <X size={20} />
                 </button>
               </div>
-
-              {/* Balance Display */}
-              <div className="text-center mb-6">
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                    <img src={tonSymbol} alt="TON" className="w-12 h-12" />
+              
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center">
+                      <img src={tonSymbol} alt="TON" className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Текущий баланс</p>
+                      <p className="text-gray-400 text-sm">TON</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-gray-400 text-sm">Ваш баланс</p>
-                    <p className="text-2xl font-bold text-white">
-                      {balance.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TON
-                    </p>
-                  </div>
+                  <span className="text-white font-bold text-lg">
+                    {balance.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TON
+                  </span>
                 </div>
-              </div>
-
-              {/* Actions */}
-              <div className="space-y-3">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleTopUp}
-                  className="w-full py-3 px-4 bg-gradient-to-r from-telegram-accent to-blue-600 rounded-xl text-white font-medium hover:from-telegram-accent/90 hover:to-blue-600/90 transition-all flex items-center justify-center gap-2"
-                >
-                  <Plus className="w-5 h-5" />
-                  <span>Пополнить баланс</span>
-                </motion.button>
                 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleWithdraw}
-                  className="w-full py-3 px-4 bg-gray-700 rounded-xl text-white font-medium hover:bg-gray-600 transition-all flex items-center justify-center gap-2"
-                >
-                  <ArrowUpRight className="w-5 h-5" />
-                  <span>Вывести средства</span>
-                </motion.button>
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleTopUp}
+                    className="flex-1 bg-telegram-accent text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-600 transition-colors"
+                  >
+                    Пополнить
+                  </button>
+                  <button
+                    onClick={handleWithdraw}
+                    className="flex-1 bg-gray-700 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-600 transition-colors"
+                  >
+                    Вывести
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Case Modal */}
+      <AnimatePresence>
+        {showCaseModal && selectedCase && (
+          <CaseModal
+            caseData={selectedCase}
+            onOpen={handleOpenCase}
+            onClose={() => setShowCaseModal(false)}
+          />
         )}
       </AnimatePresence>
     </div>

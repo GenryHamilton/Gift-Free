@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import { debugDataLoading, debugTelegramWebApp, debugDependencies } from './utils/debug.js'
 
 // Инициализация Telegram Web App
 const initTelegramWebApp = () => {
@@ -26,6 +27,12 @@ const initTelegramWebApp = () => {
     console.error('Error initializing Telegram Web App:', error);
   }
 };
+
+// Запускаем отладку
+console.log('=== APP INITIALIZATION ===');
+debugDependencies();
+debugDataLoading();
+debugTelegramWebApp();
 
 // Инициализируем Telegram Web App перед рендером
 initTelegramWebApp();
