@@ -8,6 +8,19 @@
     <meta name="description" content="Telegram Gifts - Дари подарки в Telegram" />
     <title>Telegram Gifts</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+      // Инициализация Telegram Web App
+      document.addEventListener('DOMContentLoaded', function() {
+        if (window.Telegram && window.Telegram.WebApp) {
+          const WebApp = window.Telegram.WebApp;
+          WebApp.ready();
+          WebApp.expand();
+          WebApp.setHeaderColor('#17212b');
+          WebApp.setBackgroundColor('#17212b');
+          console.log('Telegram Web App initialized in HTML');
+        }
+      });
+    </script>
     <style>
       body {
         margin: 0;
