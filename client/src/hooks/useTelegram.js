@@ -72,7 +72,7 @@ export const useTelegram = () => {
       console.log('WebApp object:', WebApp);
 
       // Получаем данные пользователя
-      if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
+    if (WebApp.initDataUnsafe && WebApp.initDataUnsafe.user) {
         console.log('User data found:', WebApp.initDataUnsafe.user);
         setUser(WebApp.initDataUnsafe.user);
       } else {
@@ -83,24 +83,24 @@ export const useTelegram = () => {
           last_name: 'User',
           username: 'testuser'
         });
-      }
-      
-      // Настройка темы
+    }
+    
+    // Настройка темы
       console.log('Setting up WebApp...');
-      WebApp.ready();
-      WebApp.expand();
-      
-      // Установка темы
-      const colorScheme = WebApp.colorScheme;
+    WebApp.ready();
+    WebApp.expand();
+    
+    // Установка темы
+    const colorScheme = WebApp.colorScheme;
       console.log('Color scheme:', colorScheme);
-      setTheme(colorScheme);
-      
-      // Установка цветов в соответствии с темой Telegram
-      WebApp.setHeaderColor('#17212b');
-      WebApp.setBackgroundColor('#17212b');
+    setTheme(colorScheme);
+    
+    // Установка цветов в соответствии с темой Telegram
+    WebApp.setHeaderColor('#17212b');
+    WebApp.setBackgroundColor('#17212b');
       
       console.log('Telegram Web App initialized successfully');
-        
+      
     } catch (error) {
       console.error('Error initializing Telegram Web App:', error);
       // Set default user for development
@@ -119,7 +119,7 @@ export const useTelegram = () => {
   const showAlert = (message) => {
     try {
       const WebApp = getWebApp();
-      WebApp.showAlert(message);
+    WebApp.showAlert(message);
     } catch (error) {
       console.log('Alert:', message);
       alert(message);
@@ -130,7 +130,7 @@ export const useTelegram = () => {
     return new Promise((resolve) => {
       try {
         const WebApp = getWebApp();
-        WebApp.showConfirm(message, resolve);
+      WebApp.showConfirm(message, resolve);
       } catch (error) {
         const result = window.confirm(message);
         resolve(result);
@@ -141,7 +141,7 @@ export const useTelegram = () => {
   const hapticFeedback = (type = 'medium') => {
     try {
       const WebApp = getWebApp();
-      WebApp.HapticFeedback.impactOccurred(type);
+    WebApp.HapticFeedback.impactOccurred(type);
     } catch (error) {
       // Haptic feedback not available in browser
     }
@@ -150,7 +150,7 @@ export const useTelegram = () => {
   const close = () => {
     try {
       const WebApp = getWebApp();
-      WebApp.close();
+    WebApp.close();
     } catch (error) {
       console.log('Close app');
     }
@@ -159,7 +159,7 @@ export const useTelegram = () => {
   const sendData = (data) => {
     try {
       const WebApp = getWebApp();
-      WebApp.sendData(JSON.stringify(data));
+    WebApp.sendData(JSON.stringify(data));
     } catch (error) {
       console.log('Send data:', data);
     }
@@ -168,7 +168,7 @@ export const useTelegram = () => {
   const openLink = (url) => {
     try {
       const WebApp = getWebApp();
-      WebApp.openLink(url);
+    WebApp.openLink(url);
     } catch (error) {
       window.open(url, '_blank');
     }
@@ -177,7 +177,7 @@ export const useTelegram = () => {
   const openTelegramLink = (url) => {
     try {
       const WebApp = getWebApp();
-      WebApp.openTelegramLink(url);
+    WebApp.openTelegramLink(url);
     } catch (error) {
       window.open(url, '_blank');
     }
@@ -186,12 +186,12 @@ export const useTelegram = () => {
   const showMainButton = ({ text, color, textColor, onClick }) => {
     try {
       const WebApp = getWebApp();
-      const mainButton = WebApp.MainButton;
-      mainButton.text = text;
-      mainButton.color = color || '#2481cc';
-      mainButton.textColor = textColor || '#ffffff';
-      mainButton.show();
-      mainButton.onClick(onClick);
+    const mainButton = WebApp.MainButton;
+    mainButton.text = text;
+    mainButton.color = color || '#2481cc';
+    mainButton.textColor = textColor || '#ffffff';
+    mainButton.show();
+    mainButton.onClick(onClick);
     } catch (error) {
       console.log('Show main button:', text);
     }
@@ -200,7 +200,7 @@ export const useTelegram = () => {
   const hideMainButton = () => {
     try {
       const WebApp = getWebApp();
-      WebApp.MainButton.hide();
+    WebApp.MainButton.hide();
     } catch (error) {
       console.log('Hide main button');
     }

@@ -107,7 +107,7 @@ export const GiftProvider = ({ children }) => {
 
     // Добавляем небольшую задержку для стабилизации
     const timer = setTimeout(() => {
-      initializeData();
+    initializeData();
     }, 100);
 
     return () => clearTimeout(timer);
