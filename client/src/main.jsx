@@ -3,42 +3,35 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-console.log('=== APP STARTING ===');
-
-// Простая инициализация
-const initApp = () => {
+// Инициализация Telegram Web App
+const initTelegramWebApp = () => {
   try {
-    console.log('Initializing app...');
-    
-    // Проверяем базовые возможности
-    console.log('React available:', typeof React !== 'undefined');
-    console.log('DOM ready:', document.getElementById('root'));
-    
-    // Проверяем Telegram Web App
+    // Проверяем, что мы в Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
-      console.log('Telegram Web App available');
+      const WebApp = window.Telegram.WebApp;
+      
+      // Инициализируем Web App
+      WebApp.ready();
+      WebApp.expand();
+      
+      // Устанавливаем цвета
+      WebApp.setHeaderColor('#17212b');
+      WebApp.setBackgroundColor('#17212b');
+      
+      console.log('Telegram Web App initialized successfully');
     } else {
-      console.log('Telegram Web App not available, running in browser');
+      console.log('Not in Telegram Web App environment');
     }
-    
   } catch (error) {
-    console.error('Error during initialization:', error);
+    console.error('Error initializing Telegram Web App:', error);
   }
 };
 
-// Инициализируем приложение
-initApp();
+// Инициализируем Telegram Web App перед рендером
+initTelegramWebApp();
 
-// Рендерим приложение
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  const root = createRoot(rootElement);
-  root.render(
-    <StrictMode>
-      <App />
-    </StrictMode>,
-  );
-  console.log('App rendered successfully');
-} else {
-  console.error('Root element not found');
-}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
