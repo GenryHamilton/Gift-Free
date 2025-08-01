@@ -68,9 +68,6 @@ const HomePage = () => {
                 <p className="text-white text-sm font-medium">
                   {user?.first_name || 'Пользователь'}
               </p>
-                <p className="text-gray-400 text-xs">
-                  Telegram
-                </p>
               </div>
           </div>
 
