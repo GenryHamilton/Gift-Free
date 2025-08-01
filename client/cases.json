@@ -7,7 +7,7 @@
       "price": 5.0,
       "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
       "rarity": "rare",
-      "gifts": [39666, 14343, 29452, 39471, 66666, 20202, 44444, 77777]
+      "gifts": [39666, 14343, 29452, 39471, 66666, 20202, 44444, 77777, 33333]
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "price": 3.0,
       "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
       "rarity": "common",
-      "gifts": [29720, 272857, 49894, 64118]
+      "gifts": [29720, 272857, 49894, 64118, 188013]
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "price": 7.5,
       "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
       "rarity": "epic",
-      "gifts": [37448, 69000]
+      "gifts": [37448, 69000, 30303, 56789, 24595]
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "price": 4.0,
       "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
       "rarity": "rare",
-      "gifts": [7836, 177893]
+      "gifts": [7836, 177893, 66666, 56789, 30303]
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "price": 10.0,
       "image": "https://i.getgems.io/MlVfKNwiehD2uW446LKYp3fIEOadDAy9EOoV6Fa3tUg/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFvX3NuQXBERHFGNkdLVjB4ZV9UNW9lMjhyODQyZ0p0Z21rZ1BNaFgwLWRSa2gvMzQ5ZGZlYzc0ZmZkYjliYw",
       "rarity": "legendary",
-      "gifts": [55555, 33333]
+      "gifts": [55555, 33333, 77777, 20202, 44444]
     }
   ],
   "case_gifts": [
@@ -144,6 +144,14 @@
       "image_url": "https://i.getgems.io/zEBU4dItjVKC3HHRE-O47uXVZRrHKzCSNQYLCP4Uj1c/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUE4RENXeUNXeXl3Z09LWU9SZXJSb1NWZXZXclVRX0ZqS1FnTmloeFkxMjI3eDcvYTdjMmQxM2I2NjNmYTNhMQ"
     },
     {
+      "name": "B-Day Candle",
+      "base_name": "B-Day Candle",
+      "price_ton": 7.0,
+      "id": 188013,
+      "class": "celebration",
+      "image_url": "https://i.getgems.io/nMU5IxwSqlx2cnv-tko2i4fgz97mxxt3hpOXpBJxYRQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUN3RUZmVWJiUi0yMmZuM1ZneFVwQmlsN2J3QlFxRUhtN3dnUVliV1k5YzA4WUovZDI3ODA0MDg0ZmIyYzZhMw"
+    },
+    {
       "name": "Tama Gadget",
       "base_name": "Tama Gadget",
       "price_ton": 12.0,
@@ -158,6 +166,30 @@
       "id": 69000,
       "class": "utility",
       "image_url": "https://i.getgems.io/k7yy6E9U1za8pjl3CnnIoB77kbsYF0aCH1HCKFDL474/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUJNY2ZNQVpsTVVyMVczWDhrZEV3M2ZKTVVBYVdINC1YY21FNVI1UmZGSVkwRTIvYzQwMzI1OGFjNjFkMjRmZQ"
+    },
+    {
+      "name": "Top Hat",
+      "base_name": "Top Hat",
+      "price_ton": 38.0,
+      "id": 30303,
+      "class": "accessory",
+      "image_url": "https://i.getgems.io/t66CfEjVPRu3H7gd8URf_0yuFbn8r6baogj4UhT5_pQ/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFEdkp4TXhDSEE3ZlJsWWpvY2VCT1JmN1J3S3MwcnpqVmFLZXBRQUNNblp6RzcvZmNiYTE1M2Y1Y2Q4ZGExNQ"
+    },
+    {
+      "name": "Diamond Ring",
+      "base_name": "Diamond Ring",
+      "price_ton": 22.0,
+      "id": 56789,
+      "class": "jewelry",
+      "image_url": "https://i.getgems.io/WhPQGNYEfjlrFtpmNO1QXs1JSarUD7wXK5OJZOkif4E/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNXaDFsUGx0eVR3Q1d4Q1htNHVtTDV0UFpvWFI4a1RJY1QtcGQwSnFvYWRMSG8vZTkzM2VlMDBmNzRkZDViOQ"
+    },
+    {
+      "name": "Jester Hat",
+      "base_name": "Jester Hat",
+      "price_ton": 1.1,
+      "id": 24595,
+      "class": "accessory",
+      "image_url": "https://i.getgems.io/PVMSdUkBICfLmBv2tgRTJ-6KGFuVTM68whTJVnD0kN4/rs:fill:500:500:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUNCS19KQkFTQUE1WFZ6MUQxN1BuLS1rUWFNV20wYjl3UmVWdHNFZFJPNFRneTkvNzYyMTg3YjY1OGEyMDU0Mw"
     },
     {
       "name": "Eternal Rose",

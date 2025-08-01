@@ -13,6 +13,7 @@ const CaseModal = ({
   const [isSpinning, setIsSpinning] = useState(false);
   const [selectedGift, setSelectedGift] = useState(null);
   const [caseGifts, setCaseGifts] = useState([]);
+  const [carouselPosition, setCarouselPosition] = useState(0);
 
   useEffect(() => {
     if (caseData) {
@@ -24,10 +25,23 @@ const CaseModal = ({
   const handleOpenCase = () => {
     if (caseData && balance >= caseData.price) {
       setIsSpinning(true);
+      setSelectedGift(null);
       
-      // Simulate spinning animation
+      // Calculate random position for the carousel
+      const randomIndex = Math.floor(Math.random() * caseGifts.length);
+      // Start from the middle section of infinite carousel
+      const middleSectionStart = caseGifts.length * 80; // Start from second section
+      const targetPosition = -(middleSectionStart + randomIndex * 80);
+      
+      // Add some extra movement for more dramatic effect
+      const extraMovement = Math.random() * 400 - 200; // Random extra movement
+      const finalPosition = targetPosition + extraMovement;
+      
+      // Animate carousel to random position
+      setCarouselPosition(finalPosition);
+      
       setTimeout(() => {
-        const randomGift = caseGifts[Math.floor(Math.random() * caseGifts.length)];
+        const randomGift = caseGifts[randomIndex];
         setSelectedGift(randomGift);
         setIsSpinning(false);
         
@@ -36,6 +50,9 @@ const CaseModal = ({
       }, 3000);
     }
   };
+
+  // Create infinite carousel by duplicating gifts
+  const infiniteGifts = [...caseGifts, ...caseGifts, ...caseGifts]; // Triple the gifts for infinite effect
 
   const isLocked = !caseData || balance < caseData.price;
 
@@ -59,7 +76,7 @@ const CaseModal = ({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-gray-800 rounded-2xl p-6 w-full max-w-md"
+            className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
@@ -72,55 +89,111 @@ const CaseModal = ({
               </button>
             </div>
 
-            {/* Spinning Wheel */}
+            {/* Carousel Container */}
             <div className="flex justify-center mb-6">
-              <div className="relative w-48 h-48">
-                <motion.div
-                  animate={isSpinning ? { rotate: 360 } : {}}
-                  transition={isSpinning ? { 
-                    duration: 3, 
-                    ease: "easeOut",
-                    repeat: 0
-                  } : {}}
-                  className="w-full h-full rounded-full border-4 border-gray-600 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center"
-                >
-                  {isSpinning ? (
-                    <motion.div
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 360]
-                      }}
-                      transition={{ 
-                        duration: 0.5,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <Sparkles className="w-12 h-12 text-gift-gold" />
-                    </motion.div>
-                  ) : selectedGift ? (
-                    <div className="text-center">
-                      <div className="w-24 h-24 mx-auto mb-3">
-                        <img 
-                          src={selectedGift.image_url} 
-                          alt={selectedGift.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <p className="text-white font-bold text-sm">{selectedGift.name}</p>
-                    </div>
-                  ) : (
-                    <div className="text-center">
-                      <Gift className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                      <p className="text-gray-400 text-sm">Нажмите "Открыть кейс"</p>
-                    </div>
-                  )}
-                </motion.div>
+              <div className="relative w-80 h-32">
+                {/* Selection indicator - thin line */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-32 bg-gift-gold z-10 pointer-events-none"></div>
                 
-                {/* Wheel pointer */}
-                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-8 border-l-transparent border-r-transparent border-b-gift-gold"></div>
+                {/* Carousel */}
+                <div className="overflow-hidden h-full rounded-lg">
+                  <motion.div
+                    animate={{ x: isSpinning ? carouselPosition : 0 }}
+                    transition={isSpinning ? { 
+                      duration: 3, 
+                      ease: [0.25, 0.46, 0.45, 0.94] // Custom easing for more realistic movement
+                    } : {}}
+                    className="flex h-full"
+                    style={{ width: `${infiniteGifts.length * 80}px` }}
+                  >
+                    {infiniteGifts.map((gift, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex-shrink-0 w-16 h-32 mx-1 bg-gray-700 rounded-lg border-2 border-gray-600 flex flex-col items-center justify-center p-2 transition-all duration-200"
+                        whileHover={{ scale: 1.05, borderColor: '#fbbf24' }}
+                      >
+                        <div className="w-12 h-12 mb-2">
+                          <img 
+                            src={gift.image_url} 
+                            alt={gift.name}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                        <p className="text-gray-300 text-xs text-center leading-tight truncate">
+                          {gift.name}
+                        </p>
+                        <p className="text-gift-gold text-xs mt-1">
+                          {gift.price_ton} TON
+                        </p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+                
+                {/* Enhanced glow effect during spinning */}
+                {isSpinning && (
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{ 
+                      duration: 0.8,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-32 bg-gradient-to-b from-gift-gold via-gift-gold to-transparent pointer-events-none"
+                  ></motion.div>
+                )}
               </div>
             </div>
+
+            {/* Result Display */}
+            {selectedGift && !isSpinning && (
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="text-center mb-6 p-6 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border border-gift-gold/20"
+              >
+                <motion.div
+                  initial={{ rotate: 0, scale: 0 }}
+                  animate={{ rotate: 360, scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-gift-gold/20 to-transparent rounded-full flex items-center justify-center"
+                >
+                  <img 
+                    src={selectedGift.image_url} 
+                    alt={selectedGift.name}
+                    className="w-20 h-20 object-contain"
+                  />
+                </motion.div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-white font-bold text-lg mb-2"
+                >
+                  {selectedGift.name}
+                </motion.p>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-gift-gold text-lg font-semibold"
+                >
+                  {selectedGift.price_ton} TON
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.7 }}
+                  className="mt-3"
+                >
+                  <Sparkles className="w-6 h-6 text-gift-gold mx-auto" />
+                </motion.div>
+              </motion.div>
+            )}
 
             {/* Open Case Button */}
             <div className="mb-6">

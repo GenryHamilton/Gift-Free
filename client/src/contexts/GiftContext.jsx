@@ -7,7 +7,7 @@ const initialState = {
   gifts: [],
   cases: [],
   myGifts: [],
-  balance: 0, // Начальный баланс 0
+  balance: 100, // Начальный баланс 0
   loading: true, // Изменено на true по умолчанию
   error: null,
   categories: [],
